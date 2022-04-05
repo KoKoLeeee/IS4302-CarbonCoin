@@ -3,20 +3,20 @@ pragma solidity ^0.5.0;
 //Data segregation for company and regulator profiles 
 contract UserDataStorage {
 
-    enum Status {
-        Requested,
-        Approved,
-        Rejected
-    }
+    // enum Status {
+    //     Requested,
+    //     Approved,
+    //     Rejected
+    // }
     
     struct RegulatorInformation {
         string name;
-        Status status;
+        string country;
     }
 
     struct CompanyInformation {
         string name;
-        Status status;
+        address approvedBy;
         mapping(uint256 => uint256) emissions;
     }
 
@@ -27,62 +27,73 @@ contract UserDataStorage {
     mapping(address => RegulatorInformation) regulators;
     mapping(address => CompanyInformation) companies;
 
-    constructor(string memory _ownerName) public {
+    constructor() public {
         owner = msg.sender;
-        regulators[msg.sender] = RegulatorInformation({name: _ownerName, status: Status.Approved});
     }
 
-    // access restrictions
-    modifier approvedRegulatorContract() {
+    // modifiers
+    modifier approvedRegulatorContractOnly() {
         require(msg.sender == regulatorContract, 'Unauthorised address!');
         _;
     }
 
-    modifier approvedCompanyContract() {
+    modifier approvedCompanyContractOnly() {
         require(msg.sender == companyContract, 'Unathorised address!');
         _;
     }
 
     // Regulator Functions
 
-    function addRegulator(string memory name, address _address, Status _status) public approvedRegulatorContract {
-        regulators[_address] = RegulatorInformation({name: name, status: _status});
+    // add regulator to list of authorised regulators
+    function addRegulator(string memory name, string memory country, address _address) public approvedRegulatorContractOnly {
+        // ensure that regulator has not been authorised yet.
+        require(bytes(regulators[_address].name).length == 0, 'Regulator is already authorised!');
+        regulators[_address] = RegulatorInformation({name: name, country: country});
     }
 
-    function updateRegulatorAuthorisation(address _address, Status _status) public approvedRegulatorContract {
-        regulators[_address].status = _status;
-    }
+    // remove regulators from list of authorised regulators
+    function removeRegulator(address _address) public approvedRegulatorContractOnly {
+        // Ensure that regulator is authorised.
+        require(bytes(regulators[_address].name).length != 0, 'Address is not an authorised regulator!');
 
-    function removeRegulator(address _address) public approvedRegulatorContract {
         delete regulators[_address];
     }
 
     // Regulator Getter functions
-    function getRegulatorStatus(address _address) public view returns(Status) {
-        return regulators[_address].status;
+
+    // checks if address belongs to an authorised regulator.
+    function isAuthorisedRegulator(address _address) public view returns(bool) {
+        return bytes(regulators[_address].name).length != 0;
     }
 
     // Company functions
 
-
-    function addCompany(string memory name, address _address, Status _status) public approvedCompanyContract {
-        companies[_address] = CompanyInformation({name: name, status: _status});
+    // to add company to approved company list
+    function addCompany(string memory name, address company, address approvedBy) public approvedCompanyContractOnly {
+        //ensure that address is not already an approved company
+        require(bytes(companies[company].name).length == 0, 'Address is already an approved Company!');
+        companies[company] = CompanyInformation({name: name, approvedBy: approvedBy});
     }
 
-    function updateCompanyAuthorisation(address _address, Status _status) public approvedCompanyContract {
-        companies[_address].status = _status;
+    // to remove company from approved company list
+    function removeCompany(address company) public approvedCompanyContractOnly {
+        // ensure that address is an approved company
+        require(bytes(companies[company].name).length != 0, 'Address is not an approved company!');
+
+        delete companies[company];
     }
 
-    function removeCompany(address _address) public approvedCompanyContract {
-        delete companies[_address];
-    }
+    // To update campany carbon emissions for the year
+    function updateCompanyEmissions(address company, uint256 year, uint256 emissions) public approvedCompanyContractOnly {
+        // ensure that address is an approved company
+        require(bytes(companies[company].name).length != 0, 'Address is not an approved company!');
 
-    function updateCompanyEmissions(address company, uint256 year, uint256 emissions) public approvedCompanyContract {
         companies[company].emissions[year] = emissions;
     }
 
-    function getCompanyStatus(address _address) public view returns(Status) {
-        return companies[_address].status;
+    // checks if address belongs to an approved company.
+    function isApprovedCompany(address _address) public view returns(bool) {
+        return bytes(companies[_address].name).length != 0;
     }
 
 }
