@@ -18,9 +18,9 @@ module.exports = (deployer, network, accounts) => {
         return deployer.deploy(ProjectStorage);
     }).then(function () {
         return deployer.deploy(Project, Regulator.address, Company.address, ProjectStorage.address);
-    }).then(function () {
-        return deployer.deploy(ERC20);
-    }).then(function () {
+    // }).then(function () {
+    //     return deployer.deploy(ERC20);
+    // }).then(function () {
         return deployer.deploy(CarbonToken, Regulator.address, Company.address, Project.address);
     }).then(function () {
         return deployer.deploy(Wallet)

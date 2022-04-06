@@ -21,6 +21,9 @@ contract ProjectStorage {
     mapping(uint256 => ProjectInfo) projectInfo;
     uint256 numProjects = 0;
 
+    // events
+    event ProjectAddressSet(address);
+
     constructor() public {
         owner = msg.sender;
     }
@@ -41,6 +44,7 @@ contract ProjectStorage {
     // ------ Class Functions ------
     function setProjectAddress(address _address) public ownerOnly() {
         owner = _address;
+        emit ProjectAddressSet(_address);
     }
 
     // adds project details into storage

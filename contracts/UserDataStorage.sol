@@ -24,6 +24,10 @@ contract UserDataStorage {
     mapping(address => RegulatorInformation) regulators;
     mapping(address => CompanyInformation) public companies;
 
+    // events
+    event CompanyAddressSet(address);
+    event RegulatorAddressSet(address);
+
     constructor() public {
         owner = msg.sender;
     }
@@ -48,10 +52,12 @@ contract UserDataStorage {
 
     function setCompanyContract(address _address) public ownerOnly {
         companyContract = _address;
+        emit CompanyAddressSet(_address);
     }
 
     function setRegulatorContract(address _address) public ownerOnly {
         regulatorContract = _address;
+        emit RegulatorAddressSet(_address);
     }
 
     // ------ Regulator Functions ------
