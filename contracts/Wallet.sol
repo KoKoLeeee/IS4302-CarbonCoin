@@ -12,6 +12,10 @@ contract Wallet {
     mapping(address => uint256) token_accounts;
     mapping(address => uint256) token_locked;
 
+    constructor() public {
+        owner = msg.sender;
+    }
+    
     modifier ownerOnly() {
         require(msg.sender == owner, 'Not owner of contract!');
         _;

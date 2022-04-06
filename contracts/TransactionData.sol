@@ -16,6 +16,8 @@ contract TransactionData {
 
     Transaction[] data;
 
+    // ------ modifiers ------
+
     modifier ownerOnly() {
         require(msg.sender == owner, 'Not owner of contract!');
         _;
@@ -26,6 +28,8 @@ contract TransactionData {
         _;
     }
 
+    // ------ class functions ------
+    
     function setCarbonExchangeAddress(address _address) public ownerOnly {
         carbonExchange = _address;
     }

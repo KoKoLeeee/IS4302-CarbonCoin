@@ -34,12 +34,20 @@ contract CarbonExchange {
 
     CarbonToken tokenContract;
     Company companyContract;
-    address exchangeContract;
     TransactionData transactions;
+    
+    constructor(Wallet walletAddress, TransactionData transactionsAddress, CarbonToken tokenAddress, Company companyAddress) public {
+        wallet = walletAddress;
+        transactions = transactionsAddress;
+        tokenContract = tokenAddress;
+        companyContract = companyAddress;
+    }
+
+    // ------ modifiers ------
 
     // access restriction
     modifier companyOnly() {
-        require(companyContract.isAuthorised(msg.sender), 'Not authorised company!');
+        require(companyContract.isApproved(msg.sender), 'Not authorised company!');
         _;
     }
 
@@ -103,6 +111,7 @@ contract CarbonExchange {
                     // if a ask order can cover the total bid order
                     
                     // transfer Eth in wallet
+                    wallet.reduceLockedEth(msg.sender, amount * lowest);
                     wallet.transferEth(msg.sender, orderInfo.account_address, amount * lowest);
                     // transfer tokens in wallet
                     wallet.transferToken(orderInfo.account_address, msg.sender, amount);
@@ -121,6 +130,7 @@ contract CarbonExchange {
                     // if a ask order can only partially cover the total bid order
 
                     // transfer Eth in wallet
+                    wallet.reduceLockedEth(msg.sender, sellerAmount * lowest);
                     wallet.transferEth(msg.sender, orderInfo.account_address, sellerAmount * lowest);
                     // transfer tokens in wallet
                     wallet.transferToken(orderInfo.account_address, msg.sender, sellerAmount);
@@ -224,6 +234,7 @@ contract CarbonExchange {
                     wallet.transferEth(orderInfo.account_address, msg.sender, amount * highest); // amount to transfer = amount sold * price sold at.
 
                     // transfer tokens in wallet from seller to buyer.
+                    wallet.reduceLockedToken(msg.sender, amount);
                     wallet.transferToken(msg.sender, orderInfo.account_address, amount);
 
                     // log sell transaction for ask order fulfilled
@@ -243,6 +254,7 @@ contract CarbonExchange {
                     // transfer Eth in wallet from buyer to seller
                     wallet.transferEth(orderInfo.account_address, msg.sender, buyerAmount * highest);
                     // transfer tokens in wallet from seller to buyer
+                    wallet.reduceLockedToken(msg.sender, buyerAmount);
                     wallet.transferToken(msg.sender, orderInfo.account_address, buyerAmount);
 
                     // log sell transaction for ask order fulfilled.

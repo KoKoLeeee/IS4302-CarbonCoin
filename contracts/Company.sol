@@ -6,11 +6,14 @@ contract Company {
     address owner;
     UserDataStorage dataStorage;
 
-    constructor() public {
+    event ApprovedCompany(address);
+
+    constructor(UserDataStorage dataStorageAddress) public {
         owner = msg.sender;
+        dataStorage = dataStorageAddress;
     }
 
-    // modifiers
+    // ------ modifiers ------
 
     // Restrict access to owner of contract only
     modifier ownerOnly() {
@@ -19,10 +22,12 @@ contract Company {
     }
 
     // restrict access to only authorised regulators.
-    modifier authorisedRegulatorOnly() {
-        require(dataStorage.isAuthorisedRegulator(msg.sender), 'Only approved regulators are allowed to do this.');
+    modifier approvedRegulatorOnly() {
+        require(dataStorage.isApprovedRegulator(msg.sender), 'Only approved regulators are allowed to do this.');
         _;
     }
+
+    // ------ Class Functions ------
 
     // setter for UserDataStorage
     function setUserDataStorageAddress(address _address) public ownerOnly {
@@ -30,26 +35,40 @@ contract Company {
     }
 
     // For Regulators to authorised companies
-    function approveCompany(string memory name, address toApprove) public authorisedRegulatorOnly {
+    function approveCompany(string memory name, address toApprove) public approvedRegulatorOnly {
         // Update UserDataStorage
         dataStorage.addCompany(name, toApprove, msg.sender);
+        emit ApprovedCompany(toApprove);
     }
 
     // For regulators to forcefully remove companies
-    function removeCompany(address toRemove) public authorisedRegulatorOnly {
+    function removeCompany(address toRemove) public approvedRegulatorOnly {
         dataStorage.removeCompany(toRemove);
     }
 
     // For Regulators to report emissions of companies
-    function reportEmissions(address company, uint256 year, uint256 emissions) public authorisedRegulatorOnly {
+    function reportEmissions(address company, uint256 year, uint256 emissions) public approvedRegulatorOnly {
         dataStorage.updateCompanyEmissions(company, year, emissions);
     }
 
-    // getter functions
+    function updateYearlyLimit(address company, uint256 year, uint256 limit) public approvedRegulatorOnly {
+        dataStorage.updateCompanyLimits(company, year, limit);
+    }
+    // ------ getter functions ------
 
     // check if an adress is an authorised company
-    function isAuthorised(address _address) public view returns(bool) {
+    function isApproved(address _address) public view returns(bool) {
         return dataStorage.isApprovedCompany(_address);
     }
+
+    // get emissions for specific year
+    function getEmission(address _address, uint256 year) public view returns (uint256) {
+        return dataStorage.getEmissions(_address, year);
+    }
+
+    function getYearLimit(address _address, uint256 year) public view returns (uint256) {
+        return dataStorage.getLimit(_address, year);
+    }
+
 
 }

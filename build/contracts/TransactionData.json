@@ -1,0 +1,2019 @@
+{
+  "contractName": "TransactionData",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "setCarbonExchangeAddress",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "int256"
+        },
+        {
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTransaction",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"int256\"},{\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"addTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setCarbonExchangeAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TransactionData.sol\":\"TransactionData\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Company.sol\":{\"keccak256\":\"0x56354c8230aa4c732e5f002473040a5ada3752ce5a56d5e05c7ca9ae40168b29\",\"urls\":[\"bzzr://4994e73d69d50b4a2ab3d77d808a74d4e3e0376fb0bdc073513d90a60ffd25bb\"]},\"project:/contracts/TransactionData.sol\":{\"keccak256\":\"0xdd1f4c4086d4b7074c9421939326c66f8bb44644205cc23982c0697af1b246bc\",\"urls\":[\"bzzr://5c6a80700a3516be08740adc2b164847ad94323b54e9c3923a89617c2c6ae81e\"]},\"project:/contracts/UserDataStorage.sol\":{\"keccak256\":\"0x59b2e0787dba8300b35293b60fc7a79806c4a78c1fa7a7f95f3ca58917dc1f5b\",\"urls\":[\"bzzr://f9c5d10083ec728ffafcce97b4219663bd0423e0bbceb3a812ad6541f403b952\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506103c2806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582048a2ebf7533e94fa0ba904c939a59f369744cb1c03d249f1a9732eeb304e81230029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582048a2ebf7533e94fa0ba904c939a59f369744cb1c03d249f1a9732eeb304e81230029",
+  "sourceMap": "54:887:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;54:887:8;;;;;;;",
+  "deployedSourceMap": "54:887:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;735:197;;8:9:-1;5:2;;;30:1;27;20:12;5:2;735:197:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;735:197:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;614:113;;8:9:-1;5:2;;;30:1;27;20:12;5:2;614:113:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;614:113:8;;;;;;;;;;;;;;;;;;;;;;735:197;500:14;;;;;;;;;;;486:28;;:10;:28;;;478:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;851:4;861:62;;;;;;;;;884:7;861:62;;;;;;901:6;861:62;;;;916:5;861:62;;;851:73;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;851:73:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;735:197;;;:::o;614:113::-;369:5;;;;;;;;;;;355:19;;:10;:19;;;347:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;711:8;694:14;;:25;;;;;;;;;;;;;;;;;;614:113;:::o",
+  "source": "pragma solidity ^0.5.0;\r\n\r\nimport './Company.sol';\r\n\r\ncontract TransactionData {\r\n    \r\n    address owner;\r\n\r\n    struct Transaction {\r\n        address account;\r\n        int256 amount;\r\n        uint256 price;\r\n    }\r\n\r\n    address carbonExchange;\r\n\r\n    Transaction[] data;\r\n\r\n    // ------ modifiers ------\r\n\r\n    modifier ownerOnly() {\r\n        require(msg.sender == owner, 'Not owner of contract!');\r\n        _;\r\n    }\r\n\r\n    modifier carbonExchangeContractOnly() {\r\n        require(msg.sender == carbonExchange, 'Not authorised address!');\r\n        _;\r\n    }\r\n\r\n    // ------ class functions ------\r\n    \r\n    function setCarbonExchangeAddress(address _address) public ownerOnly {\r\n        carbonExchange = _address;\r\n    }\r\n\r\n    function addTransaction(address account, int256 amount, uint256 price) public carbonExchangeContractOnly {\r\n        data.push(Transaction({ account: account, amount: amount, price: price}));\r\n    }\r\n    \r\n}",
+  "sourcePath": "C:\\Users\\jared\\My Cloud\\NUS\\Y3S2\\IS4302\\Project\\CarbonCoin\\contracts\\TransactionData.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/TransactionData.sol",
+    "exportedSymbols": {
+      "TransactionData": [
+        2356
+      ]
+    },
+    "id": 2357,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2282,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:8"
+      },
+      {
+        "absolutePath": "project:/contracts/Company.sol",
+        "file": "./Company.sol",
+        "id": 2283,
+        "nodeType": "ImportDirective",
+        "scope": 2357,
+        "sourceUnit": 1392,
+        "src": "27:23:8",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2356,
+        "linearizedBaseContracts": [
+          2356
+        ],
+        "name": "TransactionData",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2285,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+            "src": "92:13:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 2284,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "92:7:8",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "TransactionData.Transaction",
+            "id": 2292,
+            "members": [
+              {
+                "constant": false,
+                "id": 2287,
+                "name": "account",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+                "src": "144:15:8",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2286,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "144:7:8",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2289,
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+                "src": "170:13:8",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
+                },
+                "typeName": {
+                  "id": 2288,
+                  "name": "int256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "170:6:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2291,
+                "name": "price",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+                "src": "194:13:8",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2290,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "194:7:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Transaction",
+            "nodeType": "StructDefinition",
+            "scope": 2356,
+            "src": "114:101:8",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2294,
+            "name": "carbonExchange",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+            "src": "223:22:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 2293,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "223:7:8",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 2297,
+            "name": "data",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+            "src": "254:18:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage",
+              "typeString": "struct TransactionData.Transaction[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 2295,
+                "name": "Transaction",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2292,
+                "src": "254:11:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Transaction_$2292_storage_ptr",
+                  "typeString": "struct TransactionData.Transaction"
+                }
+              },
+              "id": 2296,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "254:13:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage_ptr",
+                "typeString": "struct TransactionData.Transaction[]"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2308,
+              "nodeType": "Block",
+              "src": "336:85:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 2303,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2300,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3125,
+                            "src": "355:3:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 2301,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "355:10:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 2302,
+                          "name": "owner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2285,
+                          "src": "369:5:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "355:19:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4e6f74206f776e6572206f6620636f6e747261637421",
+                        "id": 2304,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "376:24:8",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a3dd8e91ebd160b5b31a6a194292365902f9030753a7a42adc78c78cbdf6bedd",
+                          "typeString": "literal_string \"Not owner of contract!\""
+                        },
+                        "value": "Not owner of contract!"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a3dd8e91ebd160b5b31a6a194292365902f9030753a7a42adc78c78cbdf6bedd",
+                          "typeString": "literal_string \"Not owner of contract!\""
+                        }
+                      ],
+                      "id": 2299,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3128,
+                        3129
+                      ],
+                      "referencedDeclaration": 3129,
+                      "src": "347:7:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2305,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "347:54:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2306,
+                  "nodeType": "ExpressionStatement",
+                  "src": "347:54:8"
+                },
+                {
+                  "id": 2307,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "412:1:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2309,
+            "name": "ownerOnly",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2298,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "333:2:8"
+            },
+            "src": "315:106:8",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2320,
+              "nodeType": "Block",
+              "src": "467:95:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 2315,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2312,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3125,
+                            "src": "486:3:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 2313,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "486:10:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 2314,
+                          "name": "carbonExchange",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2294,
+                          "src": "500:14:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "486:28:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4e6f7420617574686f7269736564206164647265737321",
+                        "id": 2316,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "516:25:8",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_1296045bbe7c74cbe32aeb4e4820776b27480439b1a6a52c3cc38c2323fe1cef",
+                          "typeString": "literal_string \"Not authorised address!\""
+                        },
+                        "value": "Not authorised address!"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_1296045bbe7c74cbe32aeb4e4820776b27480439b1a6a52c3cc38c2323fe1cef",
+                          "typeString": "literal_string \"Not authorised address!\""
+                        }
+                      ],
+                      "id": 2311,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3128,
+                        3129
+                      ],
+                      "referencedDeclaration": 3129,
+                      "src": "478:7:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2317,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "478:64:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2318,
+                  "nodeType": "ExpressionStatement",
+                  "src": "478:64:8"
+                },
+                {
+                  "id": 2319,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "553:1:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2321,
+            "name": "carbonExchangeContractOnly",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2310,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "464:2:8"
+            },
+            "src": "429:133:8",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2332,
+              "nodeType": "Block",
+              "src": "683:44:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2330,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2328,
+                      "name": "carbonExchange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2294,
+                      "src": "694:14:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 2329,
+                      "name": "_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2323,
+                      "src": "711:8:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "694:25:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 2331,
+                  "nodeType": "ExpressionStatement",
+                  "src": "694:25:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2333,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2326,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2325,
+                  "name": "ownerOnly",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2309,
+                  "src": "673:9:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "673:9:8"
+              }
+            ],
+            "name": "setCarbonExchangeAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2324,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2323,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2333,
+                  "src": "648:16:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2322,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "647:18:8"
+            },
+            "returnParameters": {
+              "id": 2327,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "683:0:8"
+            },
+            "scope": 2356,
+            "src": "614:113:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2354,
+              "nodeType": "Block",
+              "src": "840:92:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 2348,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2335,
+                            "src": "884:7:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 2349,
+                            "name": "amount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2337,
+                            "src": "901:6:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int256",
+                              "typeString": "int256"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 2350,
+                            "name": "price",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2339,
+                            "src": "916:5:8",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2347,
+                          "name": "Transaction",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2292,
+                          "src": "861:11:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Transaction_$2292_storage_ptr_$",
+                            "typeString": "type(struct TransactionData.Transaction storage pointer)"
+                          }
+                        },
+                        "id": 2351,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [
+                          "account",
+                          "amount",
+                          "price"
+                        ],
+                        "nodeType": "FunctionCall",
+                        "src": "861:62:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+                          "typeString": "struct TransactionData.Transaction memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+                          "typeString": "struct TransactionData.Transaction memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2344,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2297,
+                        "src": "851:4:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage",
+                          "typeString": "struct TransactionData.Transaction storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2346,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "851:9:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Transaction_$2292_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct TransactionData.Transaction storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 2352,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "851:73:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2353,
+                  "nodeType": "ExpressionStatement",
+                  "src": "851:73:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2355,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2342,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2341,
+                  "name": "carbonExchangeContractOnly",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2321,
+                  "src": "813:26:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "813:26:8"
+              }
+            ],
+            "name": "addTransaction",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2340,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2335,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "759:15:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2334,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "759:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2337,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "776:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2336,
+                    "name": "int256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "776:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2339,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "791:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2338,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "791:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "758:47:8"
+            },
+            "returnParameters": {
+              "id": 2343,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "840:0:8"
+            },
+            "scope": 2356,
+            "src": "735:197:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2357,
+        "src": "54:887:8"
+      }
+    ],
+    "src": "0:941:8"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/TransactionData.sol",
+      "exportedSymbols": {
+        "TransactionData": [
+          2356
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 2282,
+        "name": "PragmaDirective",
+        "src": "0:23:8"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1392,
+          "absolutePath": "project:/contracts/Company.sol",
+          "file": "./Company.sol",
+          "scope": 2357,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 2283,
+        "name": "ImportDirective",
+        "src": "27:23:8"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            2356
+          ],
+          "name": "TransactionData",
+          "scope": 2357
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "owner",
+              "scope": 2356,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 2284,
+                "name": "ElementaryTypeName",
+                "src": "92:7:8"
+              }
+            ],
+            "id": 2285,
+            "name": "VariableDeclaration",
+            "src": "92:13:8"
+          },
+          {
+            "attributes": {
+              "canonicalName": "TransactionData.Transaction",
+              "name": "Transaction",
+              "scope": 2356,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "account",
+                  "scope": 2292,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 2286,
+                    "name": "ElementaryTypeName",
+                    "src": "144:7:8"
+                  }
+                ],
+                "id": 2287,
+                "name": "VariableDeclaration",
+                "src": "144:15:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "amount",
+                  "scope": 2292,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "int256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "int256",
+                      "type": "int256"
+                    },
+                    "id": 2288,
+                    "name": "ElementaryTypeName",
+                    "src": "170:6:8"
+                  }
+                ],
+                "id": 2289,
+                "name": "VariableDeclaration",
+                "src": "170:13:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "price",
+                  "scope": 2292,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 2290,
+                    "name": "ElementaryTypeName",
+                    "src": "194:7:8"
+                  }
+                ],
+                "id": 2291,
+                "name": "VariableDeclaration",
+                "src": "194:13:8"
+              }
+            ],
+            "id": 2292,
+            "name": "StructDefinition",
+            "src": "114:101:8"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "carbonExchange",
+              "scope": 2356,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 2293,
+                "name": "ElementaryTypeName",
+                "src": "223:7:8"
+              }
+            ],
+            "id": 2294,
+            "name": "VariableDeclaration",
+            "src": "223:22:8"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "data",
+              "scope": 2356,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "struct TransactionData.Transaction[]",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "length": null,
+                  "type": "struct TransactionData.Transaction[]"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Transaction",
+                      "referencedDeclaration": 2292,
+                      "type": "struct TransactionData.Transaction"
+                    },
+                    "id": 2295,
+                    "name": "UserDefinedTypeName",
+                    "src": "254:11:8"
+                  }
+                ],
+                "id": 2296,
+                "name": "ArrayTypeName",
+                "src": "254:13:8"
+              }
+            ],
+            "id": 2297,
+            "name": "VariableDeclaration",
+            "src": "254:18:8"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "name": "ownerOnly",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2298,
+                "name": "ParameterList",
+                "src": "333:2:8"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_a3dd8e91ebd160b5b31a6a194292365902f9030753a7a42adc78c78cbdf6bedd",
+                                  "typeString": "literal_string \"Not owner of contract!\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                3128,
+                                3129
+                              ],
+                              "referencedDeclaration": 3129,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 2299,
+                            "name": "Identifier",
+                            "src": "347:7:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 3125,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 2300,
+                                    "name": "Identifier",
+                                    "src": "355:3:8"
+                                  }
+                                ],
+                                "id": 2301,
+                                "name": "MemberAccess",
+                                "src": "355:10:8"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2285,
+                                  "type": "address",
+                                  "value": "owner"
+                                },
+                                "id": 2302,
+                                "name": "Identifier",
+                                "src": "369:5:8"
+                              }
+                            ],
+                            "id": 2303,
+                            "name": "BinaryOperation",
+                            "src": "355:19:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4e6f74206f776e6572206f6620636f6e747261637421",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Not owner of contract!\"",
+                              "value": "Not owner of contract!"
+                            },
+                            "id": 2304,
+                            "name": "Literal",
+                            "src": "376:24:8"
+                          }
+                        ],
+                        "id": 2305,
+                        "name": "FunctionCall",
+                        "src": "347:54:8"
+                      }
+                    ],
+                    "id": 2306,
+                    "name": "ExpressionStatement",
+                    "src": "347:54:8"
+                  },
+                  {
+                    "id": 2307,
+                    "name": "PlaceholderStatement",
+                    "src": "412:1:8"
+                  }
+                ],
+                "id": 2308,
+                "name": "Block",
+                "src": "336:85:8"
+              }
+            ],
+            "id": 2309,
+            "name": "ModifierDefinition",
+            "src": "315:106:8"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "name": "carbonExchangeContractOnly",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2310,
+                "name": "ParameterList",
+                "src": "464:2:8"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_1296045bbe7c74cbe32aeb4e4820776b27480439b1a6a52c3cc38c2323fe1cef",
+                                  "typeString": "literal_string \"Not authorised address!\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                3128,
+                                3129
+                              ],
+                              "referencedDeclaration": 3129,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 2311,
+                            "name": "Identifier",
+                            "src": "478:7:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 3125,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 2312,
+                                    "name": "Identifier",
+                                    "src": "486:3:8"
+                                  }
+                                ],
+                                "id": 2313,
+                                "name": "MemberAccess",
+                                "src": "486:10:8"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2294,
+                                  "type": "address",
+                                  "value": "carbonExchange"
+                                },
+                                "id": 2314,
+                                "name": "Identifier",
+                                "src": "500:14:8"
+                              }
+                            ],
+                            "id": 2315,
+                            "name": "BinaryOperation",
+                            "src": "486:28:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4e6f7420617574686f7269736564206164647265737321",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Not authorised address!\"",
+                              "value": "Not authorised address!"
+                            },
+                            "id": 2316,
+                            "name": "Literal",
+                            "src": "516:25:8"
+                          }
+                        ],
+                        "id": 2317,
+                        "name": "FunctionCall",
+                        "src": "478:64:8"
+                      }
+                    ],
+                    "id": 2318,
+                    "name": "ExpressionStatement",
+                    "src": "478:64:8"
+                  },
+                  {
+                    "id": 2319,
+                    "name": "PlaceholderStatement",
+                    "src": "553:1:8"
+                  }
+                ],
+                "id": 2320,
+                "name": "Block",
+                "src": "467:95:8"
+              }
+            ],
+            "id": 2321,
+            "name": "ModifierDefinition",
+            "src": "429:133:8"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "setCarbonExchangeAddress",
+              "scope": 2356,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_address",
+                      "scope": 2333,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 2322,
+                        "name": "ElementaryTypeName",
+                        "src": "648:7:8"
+                      }
+                    ],
+                    "id": 2323,
+                    "name": "VariableDeclaration",
+                    "src": "648:16:8"
+                  }
+                ],
+                "id": 2324,
+                "name": "ParameterList",
+                "src": "647:18:8"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2327,
+                "name": "ParameterList",
+                "src": "683:0:8"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 2309,
+                      "type": "modifier ()",
+                      "value": "ownerOnly"
+                    },
+                    "id": 2325,
+                    "name": "Identifier",
+                    "src": "673:9:8"
+                  }
+                ],
+                "id": 2326,
+                "name": "ModifierInvocation",
+                "src": "673:9:8"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 2294,
+                              "type": "address",
+                              "value": "carbonExchange"
+                            },
+                            "id": 2328,
+                            "name": "Identifier",
+                            "src": "694:14:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 2323,
+                              "type": "address",
+                              "value": "_address"
+                            },
+                            "id": 2329,
+                            "name": "Identifier",
+                            "src": "711:8:8"
+                          }
+                        ],
+                        "id": 2330,
+                        "name": "Assignment",
+                        "src": "694:25:8"
+                      }
+                    ],
+                    "id": 2331,
+                    "name": "ExpressionStatement",
+                    "src": "694:25:8"
+                  }
+                ],
+                "id": 2332,
+                "name": "Block",
+                "src": "683:44:8"
+              }
+            ],
+            "id": 2333,
+            "name": "FunctionDefinition",
+            "src": "614:113:8"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "addTransaction",
+              "scope": 2356,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "account",
+                      "scope": 2355,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 2334,
+                        "name": "ElementaryTypeName",
+                        "src": "759:7:8"
+                      }
+                    ],
+                    "id": 2335,
+                    "name": "VariableDeclaration",
+                    "src": "759:15:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "amount",
+                      "scope": 2355,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "int256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "int256",
+                          "type": "int256"
+                        },
+                        "id": 2336,
+                        "name": "ElementaryTypeName",
+                        "src": "776:6:8"
+                      }
+                    ],
+                    "id": 2337,
+                    "name": "VariableDeclaration",
+                    "src": "776:13:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "price",
+                      "scope": 2355,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 2338,
+                        "name": "ElementaryTypeName",
+                        "src": "791:7:8"
+                      }
+                    ],
+                    "id": 2339,
+                    "name": "VariableDeclaration",
+                    "src": "791:13:8"
+                  }
+                ],
+                "id": 2340,
+                "name": "ParameterList",
+                "src": "758:47:8"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2343,
+                "name": "ParameterList",
+                "src": "840:0:8"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 2321,
+                      "type": "modifier ()",
+                      "value": "carbonExchangeContractOnly"
+                    },
+                    "id": 2341,
+                    "name": "Identifier",
+                    "src": "813:26:8"
+                  }
+                ],
+                "id": 2342,
+                "name": "ModifierInvocation",
+                "src": "813:26:8"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+                                  "typeString": "struct TransactionData.Transaction memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (struct TransactionData.Transaction storage ref) returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2297,
+                                  "type": "struct TransactionData.Transaction storage ref[] storage ref",
+                                  "value": "data"
+                                },
+                                "id": 2344,
+                                "name": "Identifier",
+                                "src": "851:4:8"
+                              }
+                            ],
+                            "id": 2346,
+                            "name": "MemberAccess",
+                            "src": "851:9:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                "account",
+                                "amount",
+                                "price"
+                              ],
+                              "type": "struct TransactionData.Transaction memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2292,
+                                  "type": "type(struct TransactionData.Transaction storage pointer)",
+                                  "value": "Transaction"
+                                },
+                                "id": 2347,
+                                "name": "Identifier",
+                                "src": "861:11:8"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2335,
+                                  "type": "address",
+                                  "value": "account"
+                                },
+                                "id": 2348,
+                                "name": "Identifier",
+                                "src": "884:7:8"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2337,
+                                  "type": "int256",
+                                  "value": "amount"
+                                },
+                                "id": 2349,
+                                "name": "Identifier",
+                                "src": "901:6:8"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2339,
+                                  "type": "uint256",
+                                  "value": "price"
+                                },
+                                "id": 2350,
+                                "name": "Identifier",
+                                "src": "916:5:8"
+                              }
+                            ],
+                            "id": 2351,
+                            "name": "FunctionCall",
+                            "src": "861:62:8"
+                          }
+                        ],
+                        "id": 2352,
+                        "name": "FunctionCall",
+                        "src": "851:73:8"
+                      }
+                    ],
+                    "id": 2353,
+                    "name": "ExpressionStatement",
+                    "src": "851:73:8"
+                  }
+                ],
+                "id": 2354,
+                "name": "Block",
+                "src": "840:92:8"
+              }
+            ],
+            "id": 2355,
+            "name": "FunctionDefinition",
+            "src": "735:197:8"
+          }
+        ],
+        "id": 2356,
+        "name": "ContractDefinition",
+        "src": "54:887:8"
+      }
+    ],
+    "id": 2357,
+    "name": "SourceUnit",
+    "src": "0:941:8"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xc23493B53f5CDf099ab3Ae681d32559448606c24",
+      "transactionHash": "0x392923a8b22b6127bace34db7f36b9ab583d3e2c6b4e90dfd3fdd1ac589b1c88"
+    }
+  },
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-04-06T10:37:13.081Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
