@@ -28,9 +28,10 @@ contract("Carbon Contract", function (accounts) {
 
     });
 
-    console.log("Initializing Preconditions")
+    
 
     it("Setting Address of Company and Regulator in UserDataStorage", async () => {
+        console.log("Initializing Preconditions")
         let s1 = await userDataStorageInstance.setCompanyContract(companyInstance.address);
         truffleAssert.eventEmitted(s1, 'CompanyAddressSet');
 
@@ -60,8 +61,9 @@ contract("Carbon Contract", function (accounts) {
         truffleAssert.eventEmitted(a1, 'approvalRequested')
     })
 
-    console.log("Testing Carbon Exchange Contract");
+    it("Test", async () => {
+        console.log("Testing Carbon Exchange Contract");
 
-    it("", async () => {});
+    });
     
 });
