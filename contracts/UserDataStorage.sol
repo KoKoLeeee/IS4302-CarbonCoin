@@ -42,6 +42,21 @@ contract UserDataStorage {
         _;
     }
 
+    modifier ownerOnly() {
+        require(msg.sender == owner, "Only the owner can do this");
+        _;
+    }
+
+    //set address of regulator and and company contract
+
+    function setCompanyContract(address _address) ownerOnly() public {
+        companyContract = _address;
+    }
+
+    function setRegulatorContract(address _address) ownerOnly() public {
+        regulatorContract = _address;
+    }
+
     // Regulator Functions
 
     // add regulator to list of authorised regulators

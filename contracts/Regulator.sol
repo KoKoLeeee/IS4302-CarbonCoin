@@ -22,7 +22,7 @@ contract Regulator {
     }
 
     // For contract owner to approve Regulators
-    function approveRegulator(string memory name, string memory country, address toApprove) public ownerOnly {
+    function addRegulator(string memory name, string memory country, address toApprove) public ownerOnly {
         dataStorage.addRegulator(name, country, toApprove);
 
     }

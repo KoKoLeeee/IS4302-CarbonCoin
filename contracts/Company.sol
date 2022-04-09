@@ -30,9 +30,9 @@ contract Company {
     }
 
     // For Regulators to authorised companies
-    function approveCompany(string memory name, address toApprove) public authorisedRegulatorOnly {
+    function addCompany(string memory name, address _address) public authorisedRegulatorOnly {
         // Update UserDataStorage
-        dataStorage.addCompany(name, toApprove, msg.sender);
+        dataStorage.addCompany(name, _address, msg.sender);
     }
 
     // For regulators to forcefully remove companies
