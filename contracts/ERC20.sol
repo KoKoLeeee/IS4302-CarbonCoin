@@ -59,8 +59,8 @@ contract ERC20 {
     mapping(address => mapping(address => uint256)) internal allowed;
     mapping(address => uint256) balances;
 
-    string public constant name = "CarbonToken";
-    string public constant symbol = "CTN";
+    string public constant name = "CarbonCoin";
+    string public constant symbol = "CC";
     uint8 public constant decimals = 18;
     uint256 totalSupply_;
 

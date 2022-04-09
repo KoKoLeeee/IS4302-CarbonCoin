@@ -38,6 +38,7 @@
       "type": "function"
     }
   ],
+<<<<<<< HEAD
   "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"int256\"},{\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"addTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setCarbonExchangeAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TransactionData.sol\":\"TransactionData\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Company.sol\":{\"keccak256\":\"0x238bb598c205a0e9f5775948110c1680b7a30bf8192f90aa8299215d888fa984\",\"urls\":[\"bzzr://e396690ebb961cbc80cc9852591f30e65626f5ead87482a00fbf858a362eb0ca\"]},\"project:/contracts/TransactionData.sol\":{\"keccak256\":\"0x95666d3ea26ea92cfd5beb264257a6544f9e9057d67c3f3029c9732b9f131e3e\",\"urls\":[\"bzzr://d714d20a3c12a2daac359ed10aaa4ae36dc88c008418fbcfc64c2a6539d685da\"]},\"project:/contracts/UserDataStorage.sol\":{\"keccak256\":\"0x812e5ede6e81f82ecfdb219d0966c376c6af97fb2ae57f60d380b691b3e0a896\",\"urls\":[\"bzzr://5ddea6b46516c8ec7a86e841312e6e385e0b8d886b820a98a4bb0e58045ae21f\"]}},\"version\":1}",
   "bytecode": "0x608060405234801561001057600080fd5b506103c2806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a72305820a5edba92b05fd44243da0dfe003c9f8ad2297be441165ee4eb514997dda449a40029",
   "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a72305820a5edba92b05fd44243da0dfe003c9f8ad2297be441165ee4eb514997dda449a40029",
@@ -45,10 +46,20 @@
   "deployedSourceMap": "54:809:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;657:197;;8:9:-1;5:2;;;30:1;27;20:12;5:2;657:197:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;657:197:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;536:113;;8:9:-1;5:2;;;30:1;27;20:12;5:2;536:113:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;536:113:8;;;;;;;;;;;;;;;;;;;;;;657:197;466:14;;;;;;;;;;;452:28;;:10;:28;;;444:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;773:4;783:62;;;;;;;;;806:7;783:62;;;;;;823:6;783:62;;;;838:5;783:62;;;773:73;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;773:73:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;657:197;;;:::o;536:113::-;335:5;;;;;;;;;;;321:19;;:10;:19;;;313:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;633:8;616:14;;:25;;;;;;;;;;;;;;;;;;536:113;:::o",
   "source": "pragma solidity ^0.5.0;\r\n\r\nimport './Company.sol';\r\n\r\ncontract TransactionData {\r\n    \r\n    address owner;\r\n\r\n    struct Transaction {\r\n        address account;\r\n        int256 amount;\r\n        uint256 price;\r\n    }\r\n\r\n    address carbonExchange;\r\n\r\n    Transaction[] data;\r\n\r\n    modifier ownerOnly() {\r\n        require(msg.sender == owner, 'Not owner of contract!');\r\n        _;\r\n    }\r\n\r\n    modifier carbonExchangeContractOnly() {\r\n        require(msg.sender == carbonExchange, 'Not authorised address!');\r\n        _;\r\n    }\r\n\r\n    function setCarbonExchangeAddress(address _address) public ownerOnly {\r\n        carbonExchange = _address;\r\n    }\r\n\r\n    function addTransaction(address account, int256 amount, uint256 price) public carbonExchangeContractOnly {\r\n        data.push(Transaction({ account: account, amount: amount, price: price}));\r\n    }\r\n    \r\n}",
   "sourcePath": "C:\\Users\\Daniel\\Desktop\\IS4302-CarbonCoin\\contracts\\TransactionData.sol",
+=======
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"int256\"},{\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"addTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"setCarbonExchangeAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TransactionData.sol\":\"TransactionData\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Company.sol\":{\"keccak256\":\"0x56354c8230aa4c732e5f002473040a5ada3752ce5a56d5e05c7ca9ae40168b29\",\"urls\":[\"bzzr://4994e73d69d50b4a2ab3d77d808a74d4e3e0376fb0bdc073513d90a60ffd25bb\"]},\"project:/contracts/TransactionData.sol\":{\"keccak256\":\"0xdd1f4c4086d4b7074c9421939326c66f8bb44644205cc23982c0697af1b246bc\",\"urls\":[\"bzzr://5c6a80700a3516be08740adc2b164847ad94323b54e9c3923a89617c2c6ae81e\"]},\"project:/contracts/UserDataStorage.sol\":{\"keccak256\":\"0x59b2e0787dba8300b35293b60fc7a79806c4a78c1fa7a7f95f3ca58917dc1f5b\",\"urls\":[\"bzzr://f9c5d10083ec728ffafcce97b4219663bd0423e0bbceb3a812ad6541f403b952\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506103c2806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582048a2ebf7533e94fa0ba904c939a59f369744cb1c03d249f1a9732eeb304e81230029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632fe116751461005157806343e93c40146100b6575b600080fd5b34801561005d57600080fd5b506100b46004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610107565b005b3480156100c257600080fd5b50610105600480360360208110156100d957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061028e565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101cc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260178152602001807f4e6f7420617574686f726973656420616464726573732100000000000000000081525060200191505060405180910390fd5b60026060604051908101604052808573ffffffffffffffffffffffffffffffffffffffff168152602001848152602001838152509080600181540180825580915050906001820390600052602060002090600302016000909192909190915060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155505050505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610352576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260168152602001807f4e6f74206f776e6572206f6620636f6e7472616374210000000000000000000081525060200191505060405180910390fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582048a2ebf7533e94fa0ba904c939a59f369744cb1c03d249f1a9732eeb304e81230029",
+  "sourceMap": "54:887:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;54:887:8;;;;;;;",
+  "deployedSourceMap": "54:887:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;735:197;;8:9:-1;5:2;;;30:1;27;20:12;5:2;735:197:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;735:197:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;614:113;;8:9:-1;5:2;;;30:1;27;20:12;5:2;614:113:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;614:113:8;;;;;;;;;;;;;;;;;;;;;;735:197;500:14;;;;;;;;;;;486:28;;:10;:28;;;478:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;851:4;861:62;;;;;;;;;884:7;861:62;;;;;;901:6;861:62;;;;916:5;861:62;;;851:73;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;851:73:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;735:197;;;:::o;614:113::-;369:5;;;;;;;;;;;355:19;;:10;:19;;;347:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;711:8;694:14;;:25;;;;;;;;;;;;;;;;;;614:113;:::o",
+  "source": "pragma solidity ^0.5.0;\r\n\r\nimport './Company.sol';\r\n\r\ncontract TransactionData {\r\n    \r\n    address owner;\r\n\r\n    struct Transaction {\r\n        address account;\r\n        int256 amount;\r\n        uint256 price;\r\n    }\r\n\r\n    address carbonExchange;\r\n\r\n    Transaction[] data;\r\n\r\n    // ------ modifiers ------\r\n\r\n    modifier ownerOnly() {\r\n        require(msg.sender == owner, 'Not owner of contract!');\r\n        _;\r\n    }\r\n\r\n    modifier carbonExchangeContractOnly() {\r\n        require(msg.sender == carbonExchange, 'Not authorised address!');\r\n        _;\r\n    }\r\n\r\n    // ------ class functions ------\r\n    \r\n    function setCarbonExchangeAddress(address _address) public ownerOnly {\r\n        carbonExchange = _address;\r\n    }\r\n\r\n    function addTransaction(address account, int256 amount, uint256 price) public carbonExchangeContractOnly {\r\n        data.push(Transaction({ account: account, amount: amount, price: price}));\r\n    }\r\n    \r\n}",
+  "sourcePath": "C:\\Users\\jared\\My Cloud\\NUS\\Y3S2\\IS4302\\Project\\CarbonCoin\\contracts\\TransactionData.sol",
+>>>>>>> origin/CarbonToken
   "ast": {
     "absolutePath": "project:/contracts/TransactionData.sol",
     "exportedSymbols": {
       "TransactionData": [
+<<<<<<< HEAD
         2106
       ]
     },
@@ -57,6 +68,16 @@
     "nodes": [
       {
         "id": 2032,
+=======
+        2356
+      ]
+    },
+    "id": 2357,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2282,
+>>>>>>> origin/CarbonToken
         "literals": [
           "solidity",
           "^",
@@ -69,10 +90,17 @@
       {
         "absolutePath": "project:/contracts/Company.sol",
         "file": "./Company.sol",
+<<<<<<< HEAD
         "id": 2033,
         "nodeType": "ImportDirective",
         "scope": 2107,
         "sourceUnit": 1218,
+=======
+        "id": 2283,
+        "nodeType": "ImportDirective",
+        "scope": 2357,
+        "sourceUnit": 1392,
+>>>>>>> origin/CarbonToken
         "src": "27:23:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -83,19 +111,32 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
+<<<<<<< HEAD
         "id": 2106,
         "linearizedBaseContracts": [
           2106
+=======
+        "id": 2356,
+        "linearizedBaseContracts": [
+          2356
+>>>>>>> origin/CarbonToken
         ],
         "name": "TransactionData",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 2035,
             "name": "owner",
             "nodeType": "VariableDeclaration",
             "scope": 2106,
+=======
+            "id": 2285,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+>>>>>>> origin/CarbonToken
             "src": "92:13:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -104,7 +145,11 @@
               "typeString": "address"
             },
             "typeName": {
+<<<<<<< HEAD
               "id": 2034,
+=======
+              "id": 2284,
+>>>>>>> origin/CarbonToken
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "92:7:8",
@@ -119,6 +164,7 @@
           },
           {
             "canonicalName": "TransactionData.Transaction",
+<<<<<<< HEAD
             "id": 2042,
             "members": [
               {
@@ -127,6 +173,16 @@
                 "name": "account",
                 "nodeType": "VariableDeclaration",
                 "scope": 2042,
+=======
+            "id": 2292,
+            "members": [
+              {
+                "constant": false,
+                "id": 2287,
+                "name": "account",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+>>>>>>> origin/CarbonToken
                 "src": "144:15:8",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -135,7 +191,11 @@
                   "typeString": "address"
                 },
                 "typeName": {
+<<<<<<< HEAD
                   "id": 2036,
+=======
+                  "id": 2286,
+>>>>>>> origin/CarbonToken
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "144:7:8",
@@ -150,10 +210,17 @@
               },
               {
                 "constant": false,
+<<<<<<< HEAD
                 "id": 2039,
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
                 "scope": 2042,
+=======
+                "id": 2289,
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+>>>>>>> origin/CarbonToken
                 "src": "170:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -162,7 +229,11 @@
                   "typeString": "int256"
                 },
                 "typeName": {
+<<<<<<< HEAD
                   "id": 2038,
+=======
+                  "id": 2288,
+>>>>>>> origin/CarbonToken
                   "name": "int256",
                   "nodeType": "ElementaryTypeName",
                   "src": "170:6:8",
@@ -176,10 +247,17 @@
               },
               {
                 "constant": false,
+<<<<<<< HEAD
                 "id": 2041,
                 "name": "price",
                 "nodeType": "VariableDeclaration",
                 "scope": 2042,
+=======
+                "id": 2291,
+                "name": "price",
+                "nodeType": "VariableDeclaration",
+                "scope": 2292,
+>>>>>>> origin/CarbonToken
                 "src": "194:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -188,7 +266,11 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
+<<<<<<< HEAD
                   "id": 2040,
+=======
+                  "id": 2290,
+>>>>>>> origin/CarbonToken
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "194:7:8",
@@ -203,16 +285,27 @@
             ],
             "name": "Transaction",
             "nodeType": "StructDefinition",
+<<<<<<< HEAD
             "scope": 2106,
+=======
+            "scope": 2356,
+>>>>>>> origin/CarbonToken
             "src": "114:101:8",
             "visibility": "public"
           },
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 2044,
             "name": "carbonExchange",
             "nodeType": "VariableDeclaration",
             "scope": 2106,
+=======
+            "id": 2294,
+            "name": "carbonExchange",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+>>>>>>> origin/CarbonToken
             "src": "223:22:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -221,7 +314,11 @@
               "typeString": "address"
             },
             "typeName": {
+<<<<<<< HEAD
               "id": 2043,
+=======
+              "id": 2293,
+>>>>>>> origin/CarbonToken
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "223:7:8",
@@ -236,20 +333,32 @@
           },
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 2047,
             "name": "data",
             "nodeType": "VariableDeclaration",
             "scope": 2106,
+=======
+            "id": 2297,
+            "name": "data",
+            "nodeType": "VariableDeclaration",
+            "scope": 2356,
+>>>>>>> origin/CarbonToken
             "src": "254:18:8",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
+<<<<<<< HEAD
               "typeIdentifier": "t_array$_t_struct$_Transaction_$2042_storage_$dyn_storage",
+=======
+              "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage",
+>>>>>>> origin/CarbonToken
               "typeString": "struct TransactionData.Transaction[]"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
+<<<<<<< HEAD
                 "id": 2045,
                 "name": "Transaction",
                 "nodeType": "UserDefinedTypeName",
@@ -261,11 +370,28 @@
                 }
               },
               "id": 2046,
+=======
+                "id": 2295,
+                "name": "Transaction",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2292,
+                "src": "254:11:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Transaction_$2292_storage_ptr",
+                  "typeString": "struct TransactionData.Transaction"
+                }
+              },
+              "id": 2296,
+>>>>>>> origin/CarbonToken
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "254:13:8",
               "typeDescriptions": {
+<<<<<<< HEAD
                 "typeIdentifier": "t_array$_t_struct$_Transaction_$2042_storage_$dyn_storage_ptr",
+=======
+                "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage_ptr",
+>>>>>>> origin/CarbonToken
                 "typeString": "struct TransactionData.Transaction[]"
               }
             },
@@ -274,9 +400,15 @@
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 2058,
               "nodeType": "Block",
               "src": "302:85:8",
+=======
+              "id": 2308,
+              "nodeType": "Block",
+              "src": "336:85:8",
+>>>>>>> origin/CarbonToken
               "statements": [
                 {
                   "expression": {
@@ -288,7 +420,11 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
+<<<<<<< HEAD
                         "id": 2053,
+=======
+                        "id": 2303,
+>>>>>>> origin/CarbonToken
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -297,18 +433,31 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 2050,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 2795,
                             "src": "321:3:8",
+=======
+                            "id": 2300,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3125,
+                            "src": "355:3:8",
+>>>>>>> origin/CarbonToken
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
+<<<<<<< HEAD
                           "id": 2051,
+=======
+                          "id": 2301,
+>>>>>>> origin/CarbonToken
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -316,7 +465,11 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
+<<<<<<< HEAD
                           "src": "321:10:8",
+=======
+                          "src": "355:10:8",
+>>>>>>> origin/CarbonToken
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
@@ -326,18 +479,31 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 2052,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 2035,
                           "src": "335:5:8",
+=======
+                          "id": 2302,
+                          "name": "owner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2285,
+                          "src": "369:5:8",
+>>>>>>> origin/CarbonToken
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
+<<<<<<< HEAD
                         "src": "321:19:8",
+=======
+                        "src": "355:19:8",
+>>>>>>> origin/CarbonToken
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -346,14 +512,22 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4e6f74206f776e6572206f6620636f6e747261637421",
+<<<<<<< HEAD
                         "id": 2054,
+=======
+                        "id": 2304,
+>>>>>>> origin/CarbonToken
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
+<<<<<<< HEAD
                         "src": "342:24:8",
+=======
+                        "src": "376:24:8",
+>>>>>>> origin/CarbonToken
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_a3dd8e91ebd160b5b31a6a194292365902f9030753a7a42adc78c78cbdf6bedd",
@@ -373,6 +547,7 @@
                           "typeString": "literal_string \"Not owner of contract!\""
                         }
                       ],
+<<<<<<< HEAD
                       "id": 2049,
                       "name": "require",
                       "nodeType": "Identifier",
@@ -382,12 +557,27 @@
                       ],
                       "referencedDeclaration": 2799,
                       "src": "313:7:8",
+=======
+                      "id": 2299,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3128,
+                        3129
+                      ],
+                      "referencedDeclaration": 3129,
+                      "src": "347:7:8",
+>>>>>>> origin/CarbonToken
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
+<<<<<<< HEAD
                     "id": 2055,
+=======
+                    "id": 2305,
+>>>>>>> origin/CarbonToken
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -395,12 +585,17 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
+<<<<<<< HEAD
                     "src": "313:54:8",
+=======
+                    "src": "347:54:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
+<<<<<<< HEAD
                   "id": 2056,
                   "nodeType": "ExpressionStatement",
                   "src": "313:54:8"
@@ -409,10 +604,21 @@
                   "id": 2057,
                   "nodeType": "PlaceholderStatement",
                   "src": "378:1:8"
+=======
+                  "id": 2306,
+                  "nodeType": "ExpressionStatement",
+                  "src": "347:54:8"
+                },
+                {
+                  "id": 2307,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "412:1:8"
+>>>>>>> origin/CarbonToken
                 }
               ]
             },
             "documentation": null,
+<<<<<<< HEAD
             "id": 2059,
             "name": "ownerOnly",
             "nodeType": "ModifierDefinition",
@@ -423,13 +629,31 @@
               "src": "299:2:8"
             },
             "src": "281:106:8",
+=======
+            "id": 2309,
+            "name": "ownerOnly",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2298,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "333:2:8"
+            },
+            "src": "315:106:8",
+>>>>>>> origin/CarbonToken
             "visibility": "internal"
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 2070,
               "nodeType": "Block",
               "src": "433:95:8",
+=======
+              "id": 2320,
+              "nodeType": "Block",
+              "src": "467:95:8",
+>>>>>>> origin/CarbonToken
               "statements": [
                 {
                   "expression": {
@@ -441,7 +665,11 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
+<<<<<<< HEAD
                         "id": 2065,
+=======
+                        "id": 2315,
+>>>>>>> origin/CarbonToken
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -450,18 +678,31 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 2062,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 2795,
                             "src": "452:3:8",
+=======
+                            "id": 2312,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3125,
+                            "src": "486:3:8",
+>>>>>>> origin/CarbonToken
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
+<<<<<<< HEAD
                           "id": 2063,
+=======
+                          "id": 2313,
+>>>>>>> origin/CarbonToken
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -469,7 +710,11 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
+<<<<<<< HEAD
                           "src": "452:10:8",
+=======
+                          "src": "486:10:8",
+>>>>>>> origin/CarbonToken
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
@@ -479,18 +724,31 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 2064,
                           "name": "carbonExchange",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 2044,
                           "src": "466:14:8",
+=======
+                          "id": 2314,
+                          "name": "carbonExchange",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2294,
+                          "src": "500:14:8",
+>>>>>>> origin/CarbonToken
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
+<<<<<<< HEAD
                         "src": "452:28:8",
+=======
+                        "src": "486:28:8",
+>>>>>>> origin/CarbonToken
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -499,14 +757,22 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4e6f7420617574686f7269736564206164647265737321",
+<<<<<<< HEAD
                         "id": 2066,
+=======
+                        "id": 2316,
+>>>>>>> origin/CarbonToken
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
+<<<<<<< HEAD
                         "src": "482:25:8",
+=======
+                        "src": "516:25:8",
+>>>>>>> origin/CarbonToken
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_1296045bbe7c74cbe32aeb4e4820776b27480439b1a6a52c3cc38c2323fe1cef",
@@ -526,6 +792,7 @@
                           "typeString": "literal_string \"Not authorised address!\""
                         }
                       ],
+<<<<<<< HEAD
                       "id": 2061,
                       "name": "require",
                       "nodeType": "Identifier",
@@ -535,12 +802,27 @@
                       ],
                       "referencedDeclaration": 2799,
                       "src": "444:7:8",
+=======
+                      "id": 2311,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3128,
+                        3129
+                      ],
+                      "referencedDeclaration": 3129,
+                      "src": "478:7:8",
+>>>>>>> origin/CarbonToken
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
+<<<<<<< HEAD
                     "id": 2067,
+=======
+                    "id": 2317,
+>>>>>>> origin/CarbonToken
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -548,12 +830,17 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
+<<<<<<< HEAD
                     "src": "444:64:8",
+=======
+                    "src": "478:64:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
+<<<<<<< HEAD
                   "id": 2068,
                   "nodeType": "ExpressionStatement",
                   "src": "444:64:8"
@@ -562,10 +849,21 @@
                   "id": 2069,
                   "nodeType": "PlaceholderStatement",
                   "src": "519:1:8"
+=======
+                  "id": 2318,
+                  "nodeType": "ExpressionStatement",
+                  "src": "478:64:8"
+                },
+                {
+                  "id": 2319,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "553:1:8"
+>>>>>>> origin/CarbonToken
                 }
               ]
             },
             "documentation": null,
+<<<<<<< HEAD
             "id": 2071,
             "name": "carbonExchangeContractOnly",
             "nodeType": "ModifierDefinition",
@@ -576,30 +874,61 @@
               "src": "430:2:8"
             },
             "src": "395:133:8",
+=======
+            "id": 2321,
+            "name": "carbonExchangeContractOnly",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2310,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "464:2:8"
+            },
+            "src": "429:133:8",
+>>>>>>> origin/CarbonToken
             "visibility": "internal"
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 2082,
               "nodeType": "Block",
               "src": "605:44:8",
+=======
+              "id": 2332,
+              "nodeType": "Block",
+              "src": "683:44:8",
+>>>>>>> origin/CarbonToken
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
+<<<<<<< HEAD
                     "id": 2080,
+=======
+                    "id": 2330,
+>>>>>>> origin/CarbonToken
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
+<<<<<<< HEAD
                       "id": 2078,
                       "name": "carbonExchange",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 2044,
                       "src": "616:14:8",
+=======
+                      "id": 2328,
+                      "name": "carbonExchange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2294,
+                      "src": "694:14:8",
+>>>>>>> origin/CarbonToken
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -609,36 +938,60 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
+<<<<<<< HEAD
                       "id": 2079,
                       "name": "_address",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 2073,
                       "src": "633:8:8",
+=======
+                      "id": 2329,
+                      "name": "_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2323,
+                      "src": "711:8:8",
+>>>>>>> origin/CarbonToken
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
+<<<<<<< HEAD
                     "src": "616:25:8",
+=======
+                    "src": "694:25:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+<<<<<<< HEAD
                   "id": 2081,
                   "nodeType": "ExpressionStatement",
                   "src": "616:25:8"
+=======
+                  "id": 2331,
+                  "nodeType": "ExpressionStatement",
+                  "src": "694:25:8"
+>>>>>>> origin/CarbonToken
                 }
               ]
             },
             "documentation": null,
+<<<<<<< HEAD
             "id": 2083,
+=======
+            "id": 2333,
+>>>>>>> origin/CarbonToken
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
+<<<<<<< HEAD
                 "id": 2076,
                 "modifierName": {
                   "argumentTypes": null,
@@ -648,28 +1001,55 @@
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 2059,
                   "src": "595:9:8",
+=======
+                "id": 2326,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2325,
+                  "name": "ownerOnly",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2309,
+                  "src": "673:9:8",
+>>>>>>> origin/CarbonToken
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
+<<<<<<< HEAD
                 "src": "595:9:8"
+=======
+                "src": "673:9:8"
+>>>>>>> origin/CarbonToken
               }
             ],
             "name": "setCarbonExchangeAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
+<<<<<<< HEAD
               "id": 2074,
+=======
+              "id": 2324,
+>>>>>>> origin/CarbonToken
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 2073,
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
                   "scope": 2083,
                   "src": "570:16:8",
+=======
+                  "id": 2323,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2333,
+                  "src": "648:16:8",
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -677,10 +1057,17 @@
                     "typeString": "address"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 2072,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "570:7:8",
+=======
+                    "id": 2322,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:7:8",
+>>>>>>> origin/CarbonToken
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -691,6 +1078,7 @@
                   "visibility": "internal"
                 }
               ],
+<<<<<<< HEAD
               "src": "569:18:8"
             },
             "returnParameters": {
@@ -701,15 +1089,33 @@
             },
             "scope": 2106,
             "src": "536:113:8",
+=======
+              "src": "647:18:8"
+            },
+            "returnParameters": {
+              "id": 2327,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "683:0:8"
+            },
+            "scope": 2356,
+            "src": "614:113:8",
+>>>>>>> origin/CarbonToken
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 2104,
               "nodeType": "Block",
               "src": "762:92:8",
+=======
+              "id": 2354,
+              "nodeType": "Block",
+              "src": "840:92:8",
+>>>>>>> origin/CarbonToken
               "statements": [
                 {
                   "expression": {
@@ -720,12 +1126,21 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 2098,
                             "name": "account",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 2085,
                             "src": "806:7:8",
+=======
+                            "id": 2348,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2335,
+                            "src": "884:7:8",
+>>>>>>> origin/CarbonToken
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -733,12 +1148,21 @@
                           },
                           {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 2099,
                             "name": "amount",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 2087,
                             "src": "823:6:8",
+=======
+                            "id": 2349,
+                            "name": "amount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2337,
+                            "src": "901:6:8",
+>>>>>>> origin/CarbonToken
                             "typeDescriptions": {
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
@@ -746,12 +1170,21 @@
                           },
                           {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 2100,
                             "name": "price",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 2089,
                             "src": "838:5:8",
+=======
+                            "id": 2350,
+                            "name": "price",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2339,
+                            "src": "916:5:8",
+>>>>>>> origin/CarbonToken
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -760,6 +1193,7 @@
                         ],
                         "expression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 2097,
                           "name": "Transaction",
                           "nodeType": "Identifier",
@@ -772,6 +1206,20 @@
                           }
                         },
                         "id": 2101,
+=======
+                          "id": 2347,
+                          "name": "Transaction",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2292,
+                          "src": "861:11:8",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Transaction_$2292_storage_ptr_$",
+                            "typeString": "type(struct TransactionData.Transaction storage pointer)"
+                          }
+                        },
+                        "id": 2351,
+>>>>>>> origin/CarbonToken
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -783,9 +1231,15 @@
                           "price"
                         ],
                         "nodeType": "FunctionCall",
+<<<<<<< HEAD
                         "src": "783:62:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_struct$_Transaction_$2042_memory",
+=======
+                        "src": "861:62:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+>>>>>>> origin/CarbonToken
                           "typeString": "struct TransactionData.Transaction memory"
                         }
                       }
@@ -793,12 +1247,17 @@
                     "expression": {
                       "argumentTypes": [
                         {
+<<<<<<< HEAD
                           "typeIdentifier": "t_struct$_Transaction_$2042_memory",
+=======
+                          "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+>>>>>>> origin/CarbonToken
                           "typeString": "struct TransactionData.Transaction memory"
                         }
                       ],
                       "expression": {
                         "argumentTypes": null,
+<<<<<<< HEAD
                         "id": 2094,
                         "name": "data",
                         "nodeType": "Identifier",
@@ -811,6 +1270,20 @@
                         }
                       },
                       "id": 2096,
+=======
+                        "id": 2344,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2297,
+                        "src": "851:4:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Transaction_$2292_storage_$dyn_storage",
+                          "typeString": "struct TransactionData.Transaction storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2346,
+>>>>>>> origin/CarbonToken
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -818,6 +1291,7 @@
                       "memberName": "push",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
+<<<<<<< HEAD
                       "src": "773:9:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Transaction_$2042_storage_$returns$_t_uint256_$",
@@ -825,6 +1299,15 @@
                       }
                     },
                     "id": 2102,
+=======
+                      "src": "851:9:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Transaction_$2292_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct TransactionData.Transaction storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 2352,
+>>>>>>> origin/CarbonToken
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -832,25 +1315,40 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
+<<<<<<< HEAD
                     "src": "773:73:8",
+=======
+                    "src": "851:73:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
+<<<<<<< HEAD
                   "id": 2103,
                   "nodeType": "ExpressionStatement",
                   "src": "773:73:8"
+=======
+                  "id": 2353,
+                  "nodeType": "ExpressionStatement",
+                  "src": "851:73:8"
+>>>>>>> origin/CarbonToken
                 }
               ]
             },
             "documentation": null,
+<<<<<<< HEAD
             "id": 2105,
+=======
+            "id": 2355,
+>>>>>>> origin/CarbonToken
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
+<<<<<<< HEAD
                 "id": 2092,
                 "modifierName": {
                   "argumentTypes": null,
@@ -860,28 +1358,55 @@
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 2071,
                   "src": "735:26:8",
+=======
+                "id": 2342,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2341,
+                  "name": "carbonExchangeContractOnly",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 2321,
+                  "src": "813:26:8",
+>>>>>>> origin/CarbonToken
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
+<<<<<<< HEAD
                 "src": "735:26:8"
+=======
+                "src": "813:26:8"
+>>>>>>> origin/CarbonToken
               }
             ],
             "name": "addTransaction",
             "nodeType": "FunctionDefinition",
             "parameters": {
+<<<<<<< HEAD
               "id": 2090,
+=======
+              "id": 2340,
+>>>>>>> origin/CarbonToken
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 2085,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
                   "scope": 2105,
                   "src": "681:15:8",
+=======
+                  "id": 2335,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "759:15:8",
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -889,10 +1414,17 @@
                     "typeString": "address"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 2084,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "681:7:8",
+=======
+                    "id": 2334,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "759:7:8",
+>>>>>>> origin/CarbonToken
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -904,11 +1436,19 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 2087,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "scope": 2105,
                   "src": "698:13:8",
+=======
+                  "id": 2337,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "776:13:8",
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -916,10 +1456,17 @@
                     "typeString": "int256"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 2086,
                     "name": "int256",
                     "nodeType": "ElementaryTypeName",
                     "src": "698:6:8",
+=======
+                    "id": 2336,
+                    "name": "int256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "776:6:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -930,11 +1477,19 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 2089,
                   "name": "price",
                   "nodeType": "VariableDeclaration",
                   "scope": 2105,
                   "src": "713:13:8",
+=======
+                  "id": 2339,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2355,
+                  "src": "791:13:8",
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -942,10 +1497,17 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 2088,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "713:7:8",
+=======
+                    "id": 2338,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "791:7:8",
+>>>>>>> origin/CarbonToken
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -955,6 +1517,7 @@
                   "visibility": "internal"
                 }
               ],
+<<<<<<< HEAD
               "src": "680:47:8"
             },
             "returnParameters": {
@@ -965,23 +1528,47 @@
             },
             "scope": 2106,
             "src": "657:197:8",
+=======
+              "src": "758:47:8"
+            },
+            "returnParameters": {
+              "id": 2343,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "840:0:8"
+            },
+            "scope": 2356,
+            "src": "735:197:8",
+>>>>>>> origin/CarbonToken
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
+<<<<<<< HEAD
         "scope": 2107,
         "src": "54:809:8"
       }
     ],
     "src": "0:863:8"
+=======
+        "scope": 2357,
+        "src": "54:887:8"
+      }
+    ],
+    "src": "0:941:8"
+>>>>>>> origin/CarbonToken
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/TransactionData.sol",
       "exportedSymbols": {
         "TransactionData": [
+<<<<<<< HEAD
           2106
+=======
+          2356
+>>>>>>> origin/CarbonToken
         ]
       }
     },
@@ -995,22 +1582,37 @@
             ".0"
           ]
         },
+<<<<<<< HEAD
         "id": 2032,
+=======
+        "id": 2282,
+>>>>>>> origin/CarbonToken
         "name": "PragmaDirective",
         "src": "0:23:8"
       },
       {
         "attributes": {
+<<<<<<< HEAD
           "SourceUnit": 1218,
           "absolutePath": "project:/contracts/Company.sol",
           "file": "./Company.sol",
           "scope": 2107,
+=======
+          "SourceUnit": 1392,
+          "absolutePath": "project:/contracts/Company.sol",
+          "file": "./Company.sol",
+          "scope": 2357,
+>>>>>>> origin/CarbonToken
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
+<<<<<<< HEAD
         "id": 2033,
+=======
+        "id": 2283,
+>>>>>>> origin/CarbonToken
         "name": "ImportDirective",
         "src": "27:23:8"
       },
@@ -1026,17 +1628,28 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
+<<<<<<< HEAD
             2106
           ],
           "name": "TransactionData",
           "scope": 2107
+=======
+            2356
+          ],
+          "name": "TransactionData",
+          "scope": 2357
+>>>>>>> origin/CarbonToken
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "owner",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -1050,12 +1663,20 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
+<<<<<<< HEAD
                 "id": 2034,
+=======
+                "id": 2284,
+>>>>>>> origin/CarbonToken
                 "name": "ElementaryTypeName",
                 "src": "92:7:8"
               }
             ],
+<<<<<<< HEAD
             "id": 2035,
+=======
+            "id": 2285,
+>>>>>>> origin/CarbonToken
             "name": "VariableDeclaration",
             "src": "92:13:8"
           },
@@ -1063,7 +1684,11 @@
             "attributes": {
               "canonicalName": "TransactionData.Transaction",
               "name": "Transaction",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "visibility": "public"
             },
             "children": [
@@ -1071,7 +1696,11 @@
                 "attributes": {
                   "constant": false,
                   "name": "account",
+<<<<<<< HEAD
                   "scope": 2042,
+=======
+                  "scope": 2292,
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "address",
@@ -1085,12 +1714,20 @@
                       "stateMutability": "nonpayable",
                       "type": "address"
                     },
+<<<<<<< HEAD
                     "id": 2036,
+=======
+                    "id": 2286,
+>>>>>>> origin/CarbonToken
                     "name": "ElementaryTypeName",
                     "src": "144:7:8"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 2037,
+=======
+                "id": 2287,
+>>>>>>> origin/CarbonToken
                 "name": "VariableDeclaration",
                 "src": "144:15:8"
               },
@@ -1098,7 +1735,11 @@
                 "attributes": {
                   "constant": false,
                   "name": "amount",
+<<<<<<< HEAD
                   "scope": 2042,
+=======
+                  "scope": 2292,
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -1111,12 +1752,20 @@
                       "name": "int256",
                       "type": "int256"
                     },
+<<<<<<< HEAD
                     "id": 2038,
+=======
+                    "id": 2288,
+>>>>>>> origin/CarbonToken
                     "name": "ElementaryTypeName",
                     "src": "170:6:8"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 2039,
+=======
+                "id": 2289,
+>>>>>>> origin/CarbonToken
                 "name": "VariableDeclaration",
                 "src": "170:13:8"
               },
@@ -1124,7 +1773,11 @@
                 "attributes": {
                   "constant": false,
                   "name": "price",
+<<<<<<< HEAD
                   "scope": 2042,
+=======
+                  "scope": 2292,
+>>>>>>> origin/CarbonToken
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -1137,17 +1790,29 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
+<<<<<<< HEAD
                     "id": 2040,
+=======
+                    "id": 2290,
+>>>>>>> origin/CarbonToken
                     "name": "ElementaryTypeName",
                     "src": "194:7:8"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 2041,
+=======
+                "id": 2291,
+>>>>>>> origin/CarbonToken
                 "name": "VariableDeclaration",
                 "src": "194:13:8"
               }
             ],
+<<<<<<< HEAD
             "id": 2042,
+=======
+            "id": 2292,
+>>>>>>> origin/CarbonToken
             "name": "StructDefinition",
             "src": "114:101:8"
           },
@@ -1155,7 +1820,11 @@
             "attributes": {
               "constant": false,
               "name": "carbonExchange",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -1169,12 +1838,20 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
+<<<<<<< HEAD
                 "id": 2043,
+=======
+                "id": 2293,
+>>>>>>> origin/CarbonToken
                 "name": "ElementaryTypeName",
                 "src": "223:7:8"
               }
             ],
+<<<<<<< HEAD
             "id": 2044,
+=======
+            "id": 2294,
+>>>>>>> origin/CarbonToken
             "name": "VariableDeclaration",
             "src": "223:22:8"
           },
@@ -1182,7 +1859,11 @@
             "attributes": {
               "constant": false,
               "name": "data",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "stateVariable": true,
               "storageLocation": "default",
               "type": "struct TransactionData.Transaction[]",
@@ -1200,20 +1881,35 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "Transaction",
+<<<<<<< HEAD
                       "referencedDeclaration": 2042,
                       "type": "struct TransactionData.Transaction"
                     },
                     "id": 2045,
+=======
+                      "referencedDeclaration": 2292,
+                      "type": "struct TransactionData.Transaction"
+                    },
+                    "id": 2295,
+>>>>>>> origin/CarbonToken
                     "name": "UserDefinedTypeName",
                     "src": "254:11:8"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 2046,
+=======
+                "id": 2296,
+>>>>>>> origin/CarbonToken
                 "name": "ArrayTypeName",
                 "src": "254:13:8"
               }
             ],
+<<<<<<< HEAD
             "id": 2047,
+=======
+            "id": 2297,
+>>>>>>> origin/CarbonToken
             "name": "VariableDeclaration",
             "src": "254:18:8"
           },
@@ -1231,9 +1927,15 @@
                   ]
                 },
                 "children": [],
+<<<<<<< HEAD
                 "id": 2048,
                 "name": "ParameterList",
                 "src": "299:2:8"
+=======
+                "id": 2298,
+                "name": "ParameterList",
+                "src": "333:2:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "children": [
@@ -1267,6 +1969,7 @@
                                 }
                               ],
                               "overloadedDeclarations": [
+<<<<<<< HEAD
                                 2798,
                                 2799
                               ],
@@ -1277,6 +1980,18 @@
                             "id": 2049,
                             "name": "Identifier",
                             "src": "313:7:8"
+=======
+                                3128,
+                                3129
+                              ],
+                              "referencedDeclaration": 3129,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 2299,
+                            "name": "Identifier",
+                            "src": "347:7:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1311,6 +2026,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 2795,
                                       "type": "msg",
                                       "value": "msg"
@@ -1323,6 +2039,20 @@
                                 "id": 2051,
                                 "name": "MemberAccess",
                                 "src": "321:10:8"
+=======
+                                      "referencedDeclaration": 3125,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 2300,
+                                    "name": "Identifier",
+                                    "src": "355:3:8"
+                                  }
+                                ],
+                                "id": 2301,
+                                "name": "MemberAccess",
+                                "src": "355:10:8"
+>>>>>>> origin/CarbonToken
                               },
                               {
                                 "attributes": {
@@ -1330,6 +2060,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2035,
                                   "type": "address",
                                   "value": "owner"
@@ -1342,6 +2073,20 @@
                             "id": 2053,
                             "name": "BinaryOperation",
                             "src": "321:19:8"
+=======
+                                  "referencedDeclaration": 2285,
+                                  "type": "address",
+                                  "value": "owner"
+                                },
+                                "id": 2302,
+                                "name": "Identifier",
+                                "src": "369:5:8"
+                              }
+                            ],
+                            "id": 2303,
+                            "name": "BinaryOperation",
+                            "src": "355:19:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1356,6 +2101,7 @@
                               "type": "literal_string \"Not owner of contract!\"",
                               "value": "Not owner of contract!"
                             },
+<<<<<<< HEAD
                             "id": 2054,
                             "name": "Literal",
                             "src": "342:24:8"
@@ -1384,6 +2130,36 @@
             "id": 2059,
             "name": "ModifierDefinition",
             "src": "281:106:8"
+=======
+                            "id": 2304,
+                            "name": "Literal",
+                            "src": "376:24:8"
+                          }
+                        ],
+                        "id": 2305,
+                        "name": "FunctionCall",
+                        "src": "347:54:8"
+                      }
+                    ],
+                    "id": 2306,
+                    "name": "ExpressionStatement",
+                    "src": "347:54:8"
+                  },
+                  {
+                    "id": 2307,
+                    "name": "PlaceholderStatement",
+                    "src": "412:1:8"
+                  }
+                ],
+                "id": 2308,
+                "name": "Block",
+                "src": "336:85:8"
+              }
+            ],
+            "id": 2309,
+            "name": "ModifierDefinition",
+            "src": "315:106:8"
+>>>>>>> origin/CarbonToken
           },
           {
             "attributes": {
@@ -1399,9 +2175,15 @@
                   ]
                 },
                 "children": [],
+<<<<<<< HEAD
                 "id": 2060,
                 "name": "ParameterList",
                 "src": "430:2:8"
+=======
+                "id": 2310,
+                "name": "ParameterList",
+                "src": "464:2:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "children": [
@@ -1435,6 +2217,7 @@
                                 }
                               ],
                               "overloadedDeclarations": [
+<<<<<<< HEAD
                                 2798,
                                 2799
                               ],
@@ -1445,6 +2228,18 @@
                             "id": 2061,
                             "name": "Identifier",
                             "src": "444:7:8"
+=======
+                                3128,
+                                3129
+                              ],
+                              "referencedDeclaration": 3129,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 2311,
+                            "name": "Identifier",
+                            "src": "478:7:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1479,6 +2274,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 2795,
                                       "type": "msg",
                                       "value": "msg"
@@ -1491,6 +2287,20 @@
                                 "id": 2063,
                                 "name": "MemberAccess",
                                 "src": "452:10:8"
+=======
+                                      "referencedDeclaration": 3125,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 2312,
+                                    "name": "Identifier",
+                                    "src": "486:3:8"
+                                  }
+                                ],
+                                "id": 2313,
+                                "name": "MemberAccess",
+                                "src": "486:10:8"
+>>>>>>> origin/CarbonToken
                               },
                               {
                                 "attributes": {
@@ -1498,6 +2308,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2044,
                                   "type": "address",
                                   "value": "carbonExchange"
@@ -1510,6 +2321,20 @@
                             "id": 2065,
                             "name": "BinaryOperation",
                             "src": "452:28:8"
+=======
+                                  "referencedDeclaration": 2294,
+                                  "type": "address",
+                                  "value": "carbonExchange"
+                                },
+                                "id": 2314,
+                                "name": "Identifier",
+                                "src": "500:14:8"
+                              }
+                            ],
+                            "id": 2315,
+                            "name": "BinaryOperation",
+                            "src": "486:28:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1524,6 +2349,7 @@
                               "type": "literal_string \"Not authorised address!\"",
                               "value": "Not authorised address!"
                             },
+<<<<<<< HEAD
                             "id": 2066,
                             "name": "Literal",
                             "src": "482:25:8"
@@ -1552,6 +2378,36 @@
             "id": 2071,
             "name": "ModifierDefinition",
             "src": "395:133:8"
+=======
+                            "id": 2316,
+                            "name": "Literal",
+                            "src": "516:25:8"
+                          }
+                        ],
+                        "id": 2317,
+                        "name": "FunctionCall",
+                        "src": "478:64:8"
+                      }
+                    ],
+                    "id": 2318,
+                    "name": "ExpressionStatement",
+                    "src": "478:64:8"
+                  },
+                  {
+                    "id": 2319,
+                    "name": "PlaceholderStatement",
+                    "src": "553:1:8"
+                  }
+                ],
+                "id": 2320,
+                "name": "Block",
+                "src": "467:95:8"
+              }
+            ],
+            "id": 2321,
+            "name": "ModifierDefinition",
+            "src": "429:133:8"
+>>>>>>> origin/CarbonToken
           },
           {
             "attributes": {
@@ -1560,7 +2416,11 @@
               "isConstructor": false,
               "kind": "function",
               "name": "setCarbonExchangeAddress",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1572,7 +2432,11 @@
                     "attributes": {
                       "constant": false,
                       "name": "_address",
+<<<<<<< HEAD
                       "scope": 2083,
+=======
+                      "scope": 2333,
+>>>>>>> origin/CarbonToken
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1586,6 +2450,7 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
+<<<<<<< HEAD
                         "id": 2072,
                         "name": "ElementaryTypeName",
                         "src": "570:7:8"
@@ -1599,6 +2464,21 @@
                 "id": 2074,
                 "name": "ParameterList",
                 "src": "569:18:8"
+=======
+                        "id": 2322,
+                        "name": "ElementaryTypeName",
+                        "src": "648:7:8"
+                      }
+                    ],
+                    "id": 2323,
+                    "name": "VariableDeclaration",
+                    "src": "648:16:8"
+                  }
+                ],
+                "id": 2324,
+                "name": "ParameterList",
+                "src": "647:18:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "attributes": {
@@ -1607,9 +2487,15 @@
                   ]
                 },
                 "children": [],
+<<<<<<< HEAD
                 "id": 2077,
                 "name": "ParameterList",
                 "src": "605:0:8"
+=======
+                "id": 2327,
+                "name": "ParameterList",
+                "src": "683:0:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "attributes": {
@@ -1622,6 +2508,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
+<<<<<<< HEAD
                       "referencedDeclaration": 2059,
                       "type": "modifier ()",
                       "value": "ownerOnly"
@@ -1634,6 +2521,20 @@
                 "id": 2076,
                 "name": "ModifierInvocation",
                 "src": "595:9:8"
+=======
+                      "referencedDeclaration": 2309,
+                      "type": "modifier ()",
+                      "value": "ownerOnly"
+                    },
+                    "id": 2325,
+                    "name": "Identifier",
+                    "src": "673:9:8"
+                  }
+                ],
+                "id": 2326,
+                "name": "ModifierInvocation",
+                "src": "673:9:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "children": [
@@ -1656,6 +2557,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
+<<<<<<< HEAD
                               "referencedDeclaration": 2044,
                               "type": "address",
                               "value": "carbonExchange"
@@ -1663,6 +2565,15 @@
                             "id": 2078,
                             "name": "Identifier",
                             "src": "616:14:8"
+=======
+                              "referencedDeclaration": 2294,
+                              "type": "address",
+                              "value": "carbonExchange"
+                            },
+                            "id": 2328,
+                            "name": "Identifier",
+                            "src": "694:14:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1670,6 +2581,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
+<<<<<<< HEAD
                               "referencedDeclaration": 2073,
                               "type": "address",
                               "value": "_address"
@@ -1697,6 +2609,35 @@
             "id": 2083,
             "name": "FunctionDefinition",
             "src": "536:113:8"
+=======
+                              "referencedDeclaration": 2323,
+                              "type": "address",
+                              "value": "_address"
+                            },
+                            "id": 2329,
+                            "name": "Identifier",
+                            "src": "711:8:8"
+                          }
+                        ],
+                        "id": 2330,
+                        "name": "Assignment",
+                        "src": "694:25:8"
+                      }
+                    ],
+                    "id": 2331,
+                    "name": "ExpressionStatement",
+                    "src": "694:25:8"
+                  }
+                ],
+                "id": 2332,
+                "name": "Block",
+                "src": "683:44:8"
+              }
+            ],
+            "id": 2333,
+            "name": "FunctionDefinition",
+            "src": "614:113:8"
+>>>>>>> origin/CarbonToken
           },
           {
             "attributes": {
@@ -1705,7 +2646,11 @@
               "isConstructor": false,
               "kind": "function",
               "name": "addTransaction",
+<<<<<<< HEAD
               "scope": 2106,
+=======
+              "scope": 2356,
+>>>>>>> origin/CarbonToken
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1717,7 +2662,11 @@
                     "attributes": {
                       "constant": false,
                       "name": "account",
+<<<<<<< HEAD
                       "scope": 2105,
+=======
+                      "scope": 2355,
+>>>>>>> origin/CarbonToken
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1731,6 +2680,7 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
+<<<<<<< HEAD
                         "id": 2084,
                         "name": "ElementaryTypeName",
                         "src": "681:7:8"
@@ -1739,12 +2689,26 @@
                     "id": 2085,
                     "name": "VariableDeclaration",
                     "src": "681:15:8"
+=======
+                        "id": 2334,
+                        "name": "ElementaryTypeName",
+                        "src": "759:7:8"
+                      }
+                    ],
+                    "id": 2335,
+                    "name": "VariableDeclaration",
+                    "src": "759:15:8"
+>>>>>>> origin/CarbonToken
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "amount",
+<<<<<<< HEAD
                       "scope": 2105,
+=======
+                      "scope": 2355,
+>>>>>>> origin/CarbonToken
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -1757,6 +2721,7 @@
                           "name": "int256",
                           "type": "int256"
                         },
+<<<<<<< HEAD
                         "id": 2086,
                         "name": "ElementaryTypeName",
                         "src": "698:6:8"
@@ -1765,12 +2730,26 @@
                     "id": 2087,
                     "name": "VariableDeclaration",
                     "src": "698:13:8"
+=======
+                        "id": 2336,
+                        "name": "ElementaryTypeName",
+                        "src": "776:6:8"
+                      }
+                    ],
+                    "id": 2337,
+                    "name": "VariableDeclaration",
+                    "src": "776:13:8"
+>>>>>>> origin/CarbonToken
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "price",
+<<<<<<< HEAD
                       "scope": 2105,
+=======
+                      "scope": 2355,
+>>>>>>> origin/CarbonToken
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1783,6 +2762,7 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
+<<<<<<< HEAD
                         "id": 2088,
                         "name": "ElementaryTypeName",
                         "src": "713:7:8"
@@ -1796,6 +2776,21 @@
                 "id": 2090,
                 "name": "ParameterList",
                 "src": "680:47:8"
+=======
+                        "id": 2338,
+                        "name": "ElementaryTypeName",
+                        "src": "791:7:8"
+                      }
+                    ],
+                    "id": 2339,
+                    "name": "VariableDeclaration",
+                    "src": "791:13:8"
+                  }
+                ],
+                "id": 2340,
+                "name": "ParameterList",
+                "src": "758:47:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "attributes": {
@@ -1804,9 +2799,15 @@
                   ]
                 },
                 "children": [],
+<<<<<<< HEAD
                 "id": 2093,
                 "name": "ParameterList",
                 "src": "762:0:8"
+=======
+                "id": 2343,
+                "name": "ParameterList",
+                "src": "840:0:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "attributes": {
@@ -1819,6 +2820,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
+<<<<<<< HEAD
                       "referencedDeclaration": 2071,
                       "type": "modifier ()",
                       "value": "carbonExchangeContractOnly"
@@ -1831,6 +2833,20 @@
                 "id": 2092,
                 "name": "ModifierInvocation",
                 "src": "735:26:8"
+=======
+                      "referencedDeclaration": 2321,
+                      "type": "modifier ()",
+                      "value": "carbonExchangeContractOnly"
+                    },
+                    "id": 2341,
+                    "name": "Identifier",
+                    "src": "813:26:8"
+                  }
+                ],
+                "id": 2342,
+                "name": "ModifierInvocation",
+                "src": "813:26:8"
+>>>>>>> origin/CarbonToken
               },
               {
                 "children": [
@@ -1855,7 +2871,11 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
+<<<<<<< HEAD
                                   "typeIdentifier": "t_struct$_Transaction_$2042_memory",
+=======
+                                  "typeIdentifier": "t_struct$_Transaction_$2292_memory",
+>>>>>>> origin/CarbonToken
                                   "typeString": "struct TransactionData.Transaction memory"
                                 }
                               ],
@@ -1874,6 +2894,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2047,
                                   "type": "struct TransactionData.Transaction storage ref[] storage ref",
                                   "value": "data"
@@ -1886,6 +2907,20 @@
                             "id": 2096,
                             "name": "MemberAccess",
                             "src": "773:9:8"
+=======
+                                  "referencedDeclaration": 2297,
+                                  "type": "struct TransactionData.Transaction storage ref[] storage ref",
+                                  "value": "data"
+                                },
+                                "id": 2344,
+                                "name": "Identifier",
+                                "src": "851:4:8"
+                              }
+                            ],
+                            "id": 2346,
+                            "name": "MemberAccess",
+                            "src": "851:9:8"
+>>>>>>> origin/CarbonToken
                           },
                           {
                             "attributes": {
@@ -1910,6 +2945,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2042,
                                   "type": "type(struct TransactionData.Transaction storage pointer)",
                                   "value": "Transaction"
@@ -1917,6 +2953,15 @@
                                 "id": 2097,
                                 "name": "Identifier",
                                 "src": "783:11:8"
+=======
+                                  "referencedDeclaration": 2292,
+                                  "type": "type(struct TransactionData.Transaction storage pointer)",
+                                  "value": "Transaction"
+                                },
+                                "id": 2347,
+                                "name": "Identifier",
+                                "src": "861:11:8"
+>>>>>>> origin/CarbonToken
                               },
                               {
                                 "attributes": {
@@ -1924,6 +2969,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2085,
                                   "type": "address",
                                   "value": "account"
@@ -1931,6 +2977,15 @@
                                 "id": 2098,
                                 "name": "Identifier",
                                 "src": "806:7:8"
+=======
+                                  "referencedDeclaration": 2335,
+                                  "type": "address",
+                                  "value": "account"
+                                },
+                                "id": 2348,
+                                "name": "Identifier",
+                                "src": "884:7:8"
+>>>>>>> origin/CarbonToken
                               },
                               {
                                 "attributes": {
@@ -1938,6 +2993,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2087,
                                   "type": "int256",
                                   "value": "amount"
@@ -1945,6 +3001,15 @@
                                 "id": 2099,
                                 "name": "Identifier",
                                 "src": "823:6:8"
+=======
+                                  "referencedDeclaration": 2337,
+                                  "type": "int256",
+                                  "value": "amount"
+                                },
+                                "id": 2349,
+                                "name": "Identifier",
+                                "src": "901:6:8"
+>>>>>>> origin/CarbonToken
                               },
                               {
                                 "attributes": {
@@ -1952,6 +3017,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
+<<<<<<< HEAD
                                   "referencedDeclaration": 2089,
                                   "type": "uint256",
                                   "value": "price"
@@ -1994,14 +3060,72 @@
     "id": 2107,
     "name": "SourceUnit",
     "src": "0:863:8"
+=======
+                                  "referencedDeclaration": 2339,
+                                  "type": "uint256",
+                                  "value": "price"
+                                },
+                                "id": 2350,
+                                "name": "Identifier",
+                                "src": "916:5:8"
+                              }
+                            ],
+                            "id": 2351,
+                            "name": "FunctionCall",
+                            "src": "861:62:8"
+                          }
+                        ],
+                        "id": 2352,
+                        "name": "FunctionCall",
+                        "src": "851:73:8"
+                      }
+                    ],
+                    "id": 2353,
+                    "name": "ExpressionStatement",
+                    "src": "851:73:8"
+                  }
+                ],
+                "id": 2354,
+                "name": "Block",
+                "src": "840:92:8"
+              }
+            ],
+            "id": 2355,
+            "name": "FunctionDefinition",
+            "src": "735:197:8"
+          }
+        ],
+        "id": 2356,
+        "name": "ContractDefinition",
+        "src": "54:887:8"
+      }
+    ],
+    "id": 2357,
+    "name": "SourceUnit",
+    "src": "0:941:8"
+>>>>>>> origin/CarbonToken
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
+<<<<<<< HEAD
   "networks": {},
   "schemaVersion": "3.4.4",
   "updatedAt": "2022-04-05T08:18:48.729Z",
+=======
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xEEFC8D970BFe775b2E712e616FC1B82D1BAE50b2",
+      "transactionHash": "0x2cefbaaf568c42c69666fec7ac806847a0bcb7accdd7683cab7bf06c6ec3fb5f"
+    }
+  },
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-04-06T11:46:53.249Z",
+  "networkType": "ethereum",
+>>>>>>> origin/CarbonToken
   "devdoc": {
     "methods": {}
   },

@@ -16,6 +16,14 @@ contract TransactionData {
 
     Transaction[] data;
 
+    event CarbonExchangeAddressSet(address);
+
+    constructor() public {
+        owner = msg.sender;
+    }
+
+    // ------ modifiers ------
+
     modifier ownerOnly() {
         require(msg.sender == owner, 'Not owner of contract!');
         _;
@@ -26,8 +34,11 @@ contract TransactionData {
         _;
     }
 
+    // ------ class functions ------
+    
     function setCarbonExchangeAddress(address _address) public ownerOnly {
         carbonExchange = _address;
+        emit CarbonExchangeAddressSet(_address);
     }
 
     function addTransaction(address account, int256 amount, uint256 price) public carbonExchangeContractOnly {

@@ -12,6 +12,14 @@ contract Wallet {
     mapping(address => uint256) token_accounts;
     mapping(address => uint256) token_locked;
 
+
+    // events
+    event CarbonExchangeAddressSet(address);
+
+    constructor() public {
+        owner = msg.sender;
+    }
+
     modifier ownerOnly() {
         require(msg.sender == owner, 'Not owner of contract!');
         _;
@@ -22,8 +30,9 @@ contract Wallet {
         _;
     }
 
-    function setCarbonExchange(address _address) public ownerOnly {
+    function setCarbonExchangeAddress(address _address) public ownerOnly {
         carbonExchange = _address;
+        emit CarbonExchangeAddressSet(_address);
     }
 
     // eth accounts

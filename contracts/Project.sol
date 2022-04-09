@@ -10,7 +10,7 @@ contract Project {
     Company companyContract;
 
     ProjectStorage projectStorage;
-    CarbonToken carbonContract;
+    // CarbonToken carbonContract;
 
     constructor(Regulator regulatorContractAddress, Company companyContractAddress, ProjectStorage projectStorageAddress) public {
         regulatorContract = regulatorContractAddress;
@@ -19,12 +19,12 @@ contract Project {
     }
 
     modifier companyOnly() {
-        require(companyContract.isAuthorised(msg.sender), 'Not authorised Company!');
+        require(companyContract.isApproved(msg.sender), 'Not authorised Company!');
         _;
     }
 
     modifier regulatorOnly() {
-        require(regulatorContract.isAuthorised(msg.sender), 'Not authorised Regulator!');
+        require(regulatorContract.isApproved(msg.sender), 'Not authorised Regulator!');
         _;
     }
 
@@ -34,11 +34,20 @@ contract Project {
 
     function approveProject(uint256 projectId, uint256 awardedTokens) public regulatorOnly {
         projectStorage.updateProject(projectId, ProjectStorage.ProjectStatus.Approved, awardedTokens);
-        carbonContract.mintFor(projectStorage.getCompany(projectId), awardedTokens);
+        // carbonContract.mintFor(projectStorage.getCompany(projectId), awardedTokens);
     }
 
     function rejectProject(uint256 projectId) public regulatorOnly() {
         projectStorage.updateProject(projectId, ProjectStorage.ProjectStatus.Rejected, 0);
+    }
+
+    // ------- getters function ------
+    function getCompany(uint256 projectId) public view returns (address) {
+        return projectStorage.getCompany(projectId);
+    }
+
+    function getProjectRewards(uint256 projectId) public view returns (uint256) {
+        return projectStorage.getProjectRewards(projectId);
     }
     
 }
