@@ -35,6 +35,25 @@ contract CarbonExchange {
     CarbonToken tokenContract;
     Company companyContract;
     TransactionData transactions;
+
+    // events
+
+    event PlacedBidOrder(address _address, uint256 amount, uint256 price);
+    event FilledBidOrder(address _address, uint256 amount, uint256 price);
+    event PlacedAskOrder(address _address, uint256 amount, uint256 price);
+    event FilledAskOrder(address _address, uint256 amount, uint256 price);
+
+    event DepositEth(address _address, uint256 amount);
+    event WithdrawEth(address _address, uint256 amount);
+    event DepositToken(address _address, uint256 amount);
+    event WithdrawToken(address _address, uint256 amount);
+
+    event WalletLockEth(address _address, uint256 amount);
+    event WalletUnlockEth(address _address, uint256 amount);
+    event WalletTransferEth(address _from, address _to, uint256 amount);
+    event WalletLockToken(address _address, uint256 amount);
+    event WalletUnlockToken(address _address, uint256 amount);
+    event WalletTransferToken(address _from, address _to, uint256 amount);
     
     constructor(Wallet walletAddress, TransactionData transactionsAddress, CarbonToken tokenAddress, Company companyAddress) public {
         wallet = walletAddress;
@@ -68,15 +87,18 @@ contract CarbonExchange {
         transactions.addTransaction(_address, amount, price);
     }
 
-    function depositToken(uint256 amount) public {
+    function depositToken(uint256 amount) public companyOnly {
+        
         tokenContract.transfer(msg.sender, address(this), amount);
         wallet.depositTokens(msg.sender, amount);
+        emit DepositToken(msg.sender, amount);
     }
 
     function placeBidOrder(uint256 amount, uint256 price) public payable {
         
         // update balance of eth in wallet
         wallet.depositEth(msg.sender, msg.value);
+        emit DepositEth(msg.sender, msg.value);
         // ensure there is no other ask orders at this price
         require(addressOrders[msg.sender][price] >= 0, 'Currently have ask order at this price!');
         // ensure that there is sufficient funds in wallet to make the purchase
@@ -84,14 +106,18 @@ contract CarbonExchange {
         require(availableEth >= amount * price, 'Insufficient funds! Please top up!');
         // lock necessary eth in the wallet.
         wallet.addLockedEth(msg.sender, amount*price);
+        emit WalletLockEth(msg.sender, amount*price);
 
         // if bid price is higher than the lowest ask price, can fill order.
-        uint256 lowest = ask.closest;
-        // uint256 total = amount;
+        uint256 biddingPrice = price;
+        uint256 lowestAskPrice = ask.closest;
+
+        
 
         // if there is a asking price lower than the bidding price and order is not fully filled yet
-        while (price >= lowest && amount > 0) {
-            OrderList memory orderLst = ask.prices[price];
+        while (lowestAskPrice != 0 && biddingPrice >= lowestAskPrice && amount > 0) {
+            // get lowest asker
+            OrderList memory orderLst = ask.prices[lowestAskPrice];
             uint256 front = orderLst.front;
             uint256 end = orderLst.end;
             
@@ -102,7 +128,7 @@ contract CarbonExchange {
                 uint256 sellerAmount = orderInfo.amount >= 0 ? uint256(orderInfo.amount) : uint256(-orderInfo.amount);
                 
                 // skip if the seller has cancelled the ask order.
-                if (addressOrders[orderInfo.account_address][lowest] >= 0) {
+                if (addressOrders[orderInfo.account_address][lowestAskPrice] >= 0) {
                     front += 1;
                     continue;
                 }
@@ -111,18 +137,29 @@ contract CarbonExchange {
                     // if a ask order can cover the total bid order
                     
                     // transfer Eth in wallet
-                    wallet.reduceLockedEth(msg.sender, amount * lowest);
-                    wallet.transferEth(msg.sender, orderInfo.account_address, amount * lowest);
+                    wallet.reduceLockedEth(msg.sender, amount * biddingPrice);
+                    emit WalletUnlockEth(msg.sender, amount*biddingPrice);
+                    wallet.transferEth(msg.sender, orderInfo.account_address, amount * lowestAskPrice);
+                    emit WalletTransferEth(msg.sender, orderInfo.account_address, amount * lowestAskPrice);
+
                     // transfer tokens in wallet
+                    wallet.reduceLockedToken(orderInfo.account_address, amount);
+                    emit WalletUnlockToken(orderInfo.account_address, amount);
                     wallet.transferToken(orderInfo.account_address, msg.sender, amount);
+                    emit WalletTransferToken(orderInfo.account_address, msg.sender, amount);
                     
                     // Log sell transaction for ask order fulfilled.
-                    logTransaction(orderInfo.account_address, int256(-amount), lowest);
+                    logTransaction(orderInfo.account_address, int256(-amount), lowestAskPrice);
                     // log buy transaction for bid order fulfilled.
-                    logTransaction(msg.sender, int256(amount), lowest);
+                    logTransaction(msg.sender, int256(amount), lowestAskPrice);
 
                     sellerAmount -= amount;
                     amount = 0;
+
+                    // update ask orders
+                    ask.prices[lowestAskPrice].orders[front].amount = int256(-sellerAmount);
+                    // update addressOrders
+                    addressOrders[orderInfo.account_address][lowestAskPrice] = int256(-sellerAmount);
 
                     // order has been fulfilled break loop.
                     break;
@@ -130,27 +167,51 @@ contract CarbonExchange {
                     // if a ask order can only partially cover the total bid order
 
                     // transfer Eth in wallet
-                    wallet.reduceLockedEth(msg.sender, sellerAmount * lowest);
-                    wallet.transferEth(msg.sender, orderInfo.account_address, sellerAmount * lowest);
+                    wallet.reduceLockedEth(msg.sender, sellerAmount * biddingPrice);
+                    emit WalletUnlockEth(msg.sender, sellerAmount * biddingPrice);
+                    wallet.transferEth(msg.sender, orderInfo.account_address, sellerAmount * lowestAskPrice);
+                    emit WalletTransferEth(msg.sender, orderInfo.account_address, sellerAmount * lowestAskPrice);
+
                     // transfer tokens in wallet
+                    wallet.reduceLockedToken(orderInfo.account_address, sellerAmount);
+                    emit WalletUnlockToken(orderInfo.account_address, sellerAmount);
                     wallet.transferToken(orderInfo.account_address, msg.sender, sellerAmount);
+                    emit WalletTransferToken(orderInfo.account_address, msg.sender, amount);
                     
                     // Log sell transaction for ask order fulfilled
-                    logTransaction(orderInfo.account_address, int256(-sellerAmount), lowest);
+                    logTransaction(orderInfo.account_address, int256(-sellerAmount), lowestAskPrice);
                     // log buy transaction for bid order fulfilled.
-                    logTransaction(msg.sender, int256(sellerAmount), lowest);
+                    logTransaction(msg.sender, int256(sellerAmount), lowestAskPrice);
 
                     amount -= sellerAmount;
                     sellerAmount = 0;
-                    uint256 next = ask.nextClosest[lowest];
-                    ask.closest = next;
-                    delete ask.nextClosest[lowest];
+
+                    // update ask orders
+                    ask.prices[lowestAskPrice].orders[front].amount = 0;
+                    // update addressOrders
+                    addressOrders[orderInfo.account_address][lowestAskPrice] = 0;
+
+                    // uint256 next = ask.nextClosest[lowest];
+                    // ask.closest = next;
+                    // delete ask.nextClosest[lowest];
                 }
-                orderInfo.amount -= int256(-sellerAmount);
+                // orderInfo.amount -= int256(-sellerAmount);
                 front += 1;
             }
-            orderLst.front = front;
-            lowest = ask.closest;
+
+            if (front == end) {
+                bid.prices[lowestAskPrice].front = 0;
+                bid.prices[lowestAskPrice].end = 0;
+                // get the next "lowest" asking price
+                uint256 next = ask.nextClosest[lowestAskPrice];
+                ask.closest = next;
+                delete ask.nextClosest[lowestAskPrice];
+                lowestAskPrice = ask.closest;
+            } else {
+                ask.prices[lowestAskPrice].front = front;
+            }
+            // orderLst.front = front;
+            // lowest = ask.closest;
         }
 
         // reduce restricted eth in wallet, since partial of the bid order has been fulfilled.
@@ -188,6 +249,7 @@ contract CarbonExchange {
             bid.prices[price].end += 1;
             // update address's orders
             addressOrders[msg.sender][price] = int256(amount);
+            emit PlacedBidOrder(msg.sender, amount, price);
         }
     }
 
@@ -197,21 +259,24 @@ contract CarbonExchange {
     }
 
     function placeAskOrder(uint256 amount, uint256 price) public {
-        // ensure there is no other bidOrders at this price.
+        // ensure there is no other bidOrders at this price for seller.
         require(addressOrders[msg.sender][price] <= 0, 'Currently have bid order at this price!');
         // ensure there is sufficient tokens in wallet to make the purchase
         require(wallet.getWithdrawableToken(msg.sender) >= amount, 'Insufficient Tokens to sell!');
         // lock necessary tokens in the wallet.
         wallet.addLockedToken(msg.sender, amount);
+        emit WalletLockToken(msg.sender, amount);
 
         // if ask price is lower than the highest bid price, can fill order
-        uint256 highest = bid.closest;
-        // uint256 total = amount;
+        uint256 askingPrice = price;
+        uint256 highestBidPrice = bid.closest;
 
         // if there is a bidding price higher than the asking price and order is not fully filled yet.
-        while (price <= highest && amount > 0) {
+        while (highestBidPrice != 0 && askingPrice <= highestBidPrice && amount > 0) {
 
-            OrderList memory orderLst = bid.prices[price];
+            // get highest bidder 
+            OrderList memory orderLst = bid.prices[highestBidPrice];
+            // get front and end queue of orders at "highest" price
             uint256 front = orderLst.front;
             uint256 end = orderLst.end;
 
@@ -222,7 +287,7 @@ contract CarbonExchange {
                 uint256 buyerAmount = uint256(orderInfo.amount); // can safely type cast because buy amount is always > 0
 
                 // skip if the bidder has cancelled their bid order
-                if (addressOrders[orderInfo.account_address][highest] <= 0) {
+                if (addressOrders[orderInfo.account_address][highestBidPrice] <= 0) {
                     front += 1;
                     continue;
                 }
@@ -231,20 +296,28 @@ contract CarbonExchange {
                     // if a bid order can cover the total ask order
 
                     // transfer Eth in wallet from buyer to seller.
-                    wallet.transferEth(orderInfo.account_address, msg.sender, amount * highest); // amount to transfer = amount sold * price sold at.
-
+                    wallet.reduceLockedEth(orderInfo.account_address, amount*highestBidPrice);
+                    emit WalletUnlockEth(orderInfo.account_address, amount*highestBidPrice);
+                    wallet.transferEth(orderInfo.account_address, msg.sender, amount * highestBidPrice); // amount to transfer = amount sold * price sold at.
+                    emit WalletTransferEth(orderInfo.account_address, msg.sender, amount*highestBidPrice);
                     // transfer tokens in wallet from seller to buyer.
                     wallet.reduceLockedToken(msg.sender, amount);
+                    emit WalletUnlockToken(msg.sender, amount);
                     wallet.transferToken(msg.sender, orderInfo.account_address, amount);
+                    emit WalletTransferToken(msg.sender, orderInfo.account_address, amount);
 
                     // log sell transaction for ask order fulfilled
-                    logTransaction(msg.sender, int256(-amount), highest);
-
+                    logTransaction(msg.sender, int256(-amount), highestBidPrice);
                     // log buy transaction for bid order fulfilled
-                    logTransaction(orderInfo.account_address, int256(amount), highest);
+                    logTransaction(orderInfo.account_address, int256(amount), highestBidPrice);
 
                     buyerAmount -= amount;
                     amount = 0;
+
+                    // update bid orders
+                    bid.prices[highestBidPrice].orders[front].amount = int256(buyerAmount);
+                    // update addressOrders
+                    addressOrders[orderInfo.account_address][highestBidPrice] = int256(buyerAmount);
 
                     // order has been fulfilled break loop.
                     break;
@@ -252,48 +325,66 @@ contract CarbonExchange {
                     // if a bid order can only partially cover the total ask order
 
                     // transfer Eth in wallet from buyer to seller
-                    wallet.transferEth(orderInfo.account_address, msg.sender, buyerAmount * highest);
+                    
+                    wallet.reduceLockedEth(orderInfo.account_address, buyerAmount*highestBidPrice);
+                    emit WalletUnlockEth(orderInfo.account_address, buyerAmount*highestBidPrice);
+                    wallet.transferEth(orderInfo.account_address, msg.sender, buyerAmount * highestBidPrice);
+                    emit WalletTransferEth(orderInfo.account_address, msg.sender, buyerAmount*highestBidPrice);
+                    
                     // transfer tokens in wallet from seller to buyer
                     wallet.reduceLockedToken(msg.sender, buyerAmount);
+                    emit WalletUnlockToken(msg.sender, buyerAmount);
                     wallet.transferToken(msg.sender, orderInfo.account_address, buyerAmount);
+                    emit WalletTransferToken(msg.sender, orderInfo.account_address, buyerAmount);
 
                     // log sell transaction for ask order fulfilled.
-                    logTransaction(msg.sender, int256(-buyerAmount), highest);
+                    logTransaction(msg.sender, int256(-buyerAmount), highestBidPrice);
                     // log buy transaction for bid order filfilled.
-                    logTransaction(orderInfo.account_address, int256(buyerAmount), highest);
+                    logTransaction(orderInfo.account_address, int256(buyerAmount), highestBidPrice);
 
                     amount -= buyerAmount;
                     buyerAmount = 0;
-                    uint256 next = bid.nextClosest[highest];
-                    bid.closest = next;
-                    delete bid.nextClosest[highest];
+
+                    // update bid order that has been filled
+                    bid.prices[highestBidPrice].orders[front].amount = 0;
+                    // update addressOrders for buyer
+                    addressOrders[orderInfo.account_address][highestBidPrice] = 0;
+
+                    // get the next "highest" bidding price
+                    // uint256 next = bid.nextClosest[highestBidPrice];
+                    // bid.closest = next;
+                    // delete bid.nextClosest[highestBidPrice];
                 }
-                orderInfo.amount = int256(buyerAmount);
+                // orderInfo.amount = int256(buyerAmount);
                 front += 1;
                 
             }
 
-            orderLst.front = front;
-            highest = bid.closest;
+            if (front == end) {
+                bid.prices[highestBidPrice].front = 0;
+                bid.prices[highestBidPrice].end = 0;
+                // get the next "highest" bidding price
+                uint256 next = bid.nextClosest[highestBidPrice];
+                bid.closest = next;
+                delete bid.nextClosest[highestBidPrice];
+                highestBidPrice = bid.closest;
+            } else {
+                bid.prices[highestBidPrice].front = front;
+            }
+            // orderLst.front = front;
+            // highest = bid.closest;
         }
-
-        // reduce restricted token in wallet since partial of the bid order has been fulfilled.
-        // if (total > amount) {
-        //     uint256 tokensUnlocked = total - amount;
-        //     wallet.reduceLockedToken(msg.sender, tokensUnlocked);
-        // }
 
         // if order is not fully fulfilled yet, add to ask orders.
         if (amount > 0) {
             uint256 lowest = ask.closest;
 
-            if (price < lowest) {
+            if (price < lowest || lowest == 0) {
                 // if ask price is lower than all the other ask orders.
-
                 ask.nextClosest[price] = ask.closest;
                 ask.closest = price;
             
-            } else {
+            } else if (price > lowest) {
                 // if ask price is NOT lower than all other ask orders.
 
                 uint256 current = lowest;
@@ -303,18 +394,25 @@ contract CarbonExchange {
                 while (current < price) {
                     previous = current;
                     current = ask.nextClosest[current];
+                    if (current == 0) {
+                        break;
+                    }
                 }
                 ask.nextClosest[previous] = price;
                 ask.nextClosest[price] = current;
             }
+
+            // add OrderInfo to queue of ask orders with the same ask price
+            ask.prices[price].orders.push(OrderInfo({account_address: msg.sender, amount: int256(-amount)}));
+            ask.prices[price].end += 1;
+            
+            // update address's orders
+            addressOrders[msg.sender][price] = int256(-amount);
+
+            emit PlacedAskOrder(msg.sender, amount, price);
         }
 
-        // add OrderInfo to queue of ask orders with the same ask price
-        ask.prices[price].orders.push(OrderInfo({account_address: msg.sender, amount: int256(-amount)}));
-        ask.prices[price].end += 1;
-
-        // update address's orders
-        addressOrders[msg.sender][price] = int256(-amount);
+        
 
     }
 

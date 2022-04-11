@@ -14,6 +14,10 @@ contract CarbonToken {
     Project projectContract;
     address exchangeAddress;
 
+    // events
+    event CarbonExchangeAddressSet(address);
+    event OwnerMint(address _to, uint256 amount);
+
     constructor(Regulator regulatorContractAddress, Company companyContractAddress, Project projectContractAddress) public {
         _owner = msg.sender;
         erc20 = new ERC20();
@@ -23,7 +27,7 @@ contract CarbonToken {
     }
 
     modifier ownerOnly() {
-        require(_owner == msg.sender, 'Not owner of contract!');
+        require(msg.sender == _owner, 'Not owner of contract!');
         _;
     }
 
@@ -42,8 +46,14 @@ contract CarbonToken {
         _;
     }
 
-    function setExchangeAddress(address _address) public ownerOnly() {
+    function setCarbonExchangeAddress(address _address) public ownerOnly {
         exchangeAddress = _address;
+        emit CarbonExchangeAddressSet(_address);
+    }
+
+    function mint(address _address, uint256 amount) public ownerOnly {
+        erc20.mint(_address, amount);
+        emit OwnerMint(_address, amount);
     }
     
     // MIGHT WANNA ADD AUTO + ONLY CAN CALL ONCE A YEAR.

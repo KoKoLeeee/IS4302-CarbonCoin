@@ -3,7 +3,7 @@ const UserDataStorage = artifacts.require("UserDataStorage");
 const Company = artifacts.require("Company");
 const ProjectStorage = artifacts.require("ProjectStorage");
 const Project = artifacts.require("Project");
-const ERC20 = artifacts.require("ERC20");
+// const ERC20 = artifacts.require("ERC20");
 const CarbonToken = artifacts.require("CarbonToken");
 const Wallet = artifacts.require("Wallet");
 const TransactionData = artifacts.require("TransactionData");
@@ -18,7 +18,7 @@ module.exports = (deployer, network, accounts) => {
         return deployer.deploy(ProjectStorage);
     }).then(function () {
         return deployer.deploy(Project, Regulator.address, Company.address, ProjectStorage.address);
-    // }).then(function () {
+    }).then(function () {
     //     return deployer.deploy(ERC20);
     // }).then(function () {
         return deployer.deploy(CarbonToken, Regulator.address, Company.address, Project.address);
