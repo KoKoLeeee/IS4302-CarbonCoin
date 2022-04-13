@@ -37,11 +37,12 @@ contract CarbonExchange {
     TransactionData transactions;
 
     // events
-
     event PlacedBidOrder(address _address, uint256 amount, uint256 price);
     event FilledBidOrder(address _address, uint256 amount, uint256 price);
+    event RemovedBidOrder(address _address, uint256 amount, uint256 price);
     event PlacedAskOrder(address _address, uint256 amount, uint256 price);
     event FilledAskOrder(address _address, uint256 amount, uint256 price);
+    event RemovedAskOrder(address _address, uint256 amount, uint256 price);
 
     event DepositEth(address _address, uint256 amount);
     event WithdrawEth(address _address, uint256 amount);
@@ -97,8 +98,10 @@ contract CarbonExchange {
     function placeBidOrder(uint256 amount, uint256 price) public payable {
         
         // update balance of eth in wallet
-        wallet.depositEth(msg.sender, msg.value);
-        emit DepositEth(msg.sender, msg.value);
+        if (msg.value > 0) {
+            wallet.depositEth(msg.sender, msg.value);
+            emit DepositEth(msg.sender, msg.value);
+        }
         // ensure there is no other ask orders at this price
         require(addressOrders[msg.sender][price] >= 0, 'Currently have ask order at this price!');
         // ensure that there is sufficient funds in wallet to make the purchase
@@ -150,8 +153,10 @@ contract CarbonExchange {
                     
                     // Log sell transaction for ask order fulfilled.
                     logTransaction(orderInfo.account_address, int256(-amount), lowestAskPrice);
+                    emit FilledAskOrder(orderInfo.account_address, amount, lowestAskPrice);
                     // log buy transaction for bid order fulfilled.
                     logTransaction(msg.sender, int256(amount), lowestAskPrice);
+                    emit FilledBidOrder(msg.sender, amount, lowestAskPrice);
 
                     sellerAmount -= amount;
                     amount = 0;
@@ -180,8 +185,10 @@ contract CarbonExchange {
                     
                     // Log sell transaction for ask order fulfilled
                     logTransaction(orderInfo.account_address, int256(-sellerAmount), lowestAskPrice);
+                    emit FilledAskOrder(orderInfo.account_address, sellerAmount, lowestAskPrice);
                     // log buy transaction for bid order fulfilled.
                     logTransaction(msg.sender, int256(sellerAmount), lowestAskPrice);
+                    emit FilledBidOrder(msg.sender, sellerAmount, lowestAskPrice);
 
                     amount -= sellerAmount;
                     sellerAmount = 0;
@@ -191,11 +198,7 @@ contract CarbonExchange {
                     // update addressOrders
                     addressOrders[orderInfo.account_address][lowestAskPrice] = 0;
 
-                    // uint256 next = ask.nextClosest[lowest];
-                    // ask.closest = next;
-                    // delete ask.nextClosest[lowest];
                 }
-                // orderInfo.amount -= int256(-sellerAmount);
                 front += 1;
             }
 
@@ -210,16 +213,8 @@ contract CarbonExchange {
             } else {
                 ask.prices[lowestAskPrice].front = front;
             }
-            // orderLst.front = front;
-            // lowest = ask.closest;
         }
 
-        // reduce restricted eth in wallet, since partial of the bid order has been fulfilled.
-        // if (total > amount) {
-        //     uint256 ethUnlocked = (total - amount) * price;
-        //     wallet.reduceLockedEth(msg.sender, ethUnlocked);
-        // }
-        
         // if order is not fully fulfilled yet, add to bid orders.
         if (amount > 0) {
             uint256 highest = bid.closest;
@@ -255,7 +250,13 @@ contract CarbonExchange {
 
     function removeBidOrder(uint256 price) public {
         require(addressOrders[msg.sender][price] > 0, 'No current Bid orders!');
+        uint256 amount = uint256(addressOrders[msg.sender][price]);
         addressOrders[msg.sender][price] = 0;
+
+        wallet.reduceLockedEth(msg.sender, amount*price);
+        emit WalletUnlockEth(msg.sender, amount*price);
+
+        emit RemovedBidOrder(msg.sender, amount, price);
     }
 
     function placeAskOrder(uint256 amount, uint256 price) public {
@@ -308,9 +309,10 @@ contract CarbonExchange {
 
                     // log sell transaction for ask order fulfilled
                     logTransaction(msg.sender, int256(-amount), highestBidPrice);
+                    emit FilledAskOrder(msg.sender, amount, highestBidPrice);
                     // log buy transaction for bid order fulfilled
                     logTransaction(orderInfo.account_address, int256(amount), highestBidPrice);
-
+                    emit FilledBidOrder(orderInfo.account_address, amount, highestBidPrice);
                     buyerAmount -= amount;
                     amount = 0;
 
@@ -339,9 +341,10 @@ contract CarbonExchange {
 
                     // log sell transaction for ask order fulfilled.
                     logTransaction(msg.sender, int256(-buyerAmount), highestBidPrice);
+                    emit FilledAskOrder(msg.sender, buyerAmount, highestBidPrice);
                     // log buy transaction for bid order filfilled.
                     logTransaction(orderInfo.account_address, int256(buyerAmount), highestBidPrice);
-
+                    emit FilledBidOrder(orderInfo.account_address, buyerAmount, highestBidPrice);
                     amount -= buyerAmount;
                     buyerAmount = 0;
 
@@ -349,13 +352,7 @@ contract CarbonExchange {
                     bid.prices[highestBidPrice].orders[front].amount = 0;
                     // update addressOrders for buyer
                     addressOrders[orderInfo.account_address][highestBidPrice] = 0;
-
-                    // get the next "highest" bidding price
-                    // uint256 next = bid.nextClosest[highestBidPrice];
-                    // bid.closest = next;
-                    // delete bid.nextClosest[highestBidPrice];
                 }
-                // orderInfo.amount = int256(buyerAmount);
                 front += 1;
                 
             }
@@ -371,8 +368,6 @@ contract CarbonExchange {
             } else {
                 bid.prices[highestBidPrice].front = front;
             }
-            // orderLst.front = front;
-            // highest = bid.closest;
         }
 
         // if order is not fully fulfilled yet, add to ask orders.
@@ -405,7 +400,7 @@ contract CarbonExchange {
             // add OrderInfo to queue of ask orders with the same ask price
             ask.prices[price].orders.push(OrderInfo({account_address: msg.sender, amount: int256(-amount)}));
             ask.prices[price].end += 1;
-            
+
             // update address's orders
             addressOrders[msg.sender][price] = int256(-amount);
 
@@ -416,12 +411,38 @@ contract CarbonExchange {
 
     }
 
-    function removeAskOrder(uint256 price) public {
+    function removeAskOrder(uint256 price) public companyOnly {
         require(addressOrders[msg.sender][price] < 0, 'No current Ask orders!');
+        uint256 amount = uint256(-addressOrders[msg.sender][price]);
         addressOrders[msg.sender][price] = 0;
+
+        wallet.reduceLockedToken(msg.sender, amount);
+        emit WalletUnlockToken(msg.sender, amount);
+
+        emit RemovedAskOrder(msg.sender, amount, price);
     }
 
+    function withdrawToken() public companyOnly {
+        require(wallet.getWithdrawableToken(msg.sender) > 0, 'No withdrawable Tokens!');
+
+        uint256 amount = wallet.getWithdrawableToken(msg.sender);
+        tokenContract.transfer(address(this), msg.sender, amount);
+        wallet.withdrawTokens(msg.sender);
+
+        emit WithdrawToken(msg.sender, amount);
 
 
+    }
+
+    function withdrawEth() public payable companyOnly {
+        require(wallet.getWithdrawableEth(msg.sender) > 0, 'No withdrawable Eth!');
+
+        uint256 amount = wallet.getWithdrawableEth(msg.sender);
+        msg.sender.transfer(amount);
+        wallet.withdrawEth(msg.sender);
+
+        emit WithdrawEth(msg.sender, amount);
+
+    }
     
 }

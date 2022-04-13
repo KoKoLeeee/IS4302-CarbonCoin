@@ -43,13 +43,12 @@ contract Wallet {
 
     function withdrawEth(address _address) public carbonExchangeContractOnly {
         require(getWithdrawableEth(_address) > 0, 'Insufficient funds or funds are locked!');
-
         eth_accounts[_address] -= getWithdrawableEth(_address);
     }
 
     function transferEth(address _from, address _to, uint256 amount) public carbonExchangeContractOnly {
         require(getEthBalance(_from) >= amount, 'Insufficient funds to transfer!');
-        reduceLockedEth(_from, amount);
+        // reduceLockedEth(_from, amount);
         eth_accounts[_from] -= amount;
         eth_accounts[_to] += amount;
     }
@@ -76,7 +75,7 @@ contract Wallet {
 
     function transferToken(address _from, address _to, uint256 amount) public carbonExchangeContractOnly {
         require(getTokenBalance(_from) >= amount, 'Insufficient tokens to transfer!');
-        reduceLockedToken(_from, amount);
+        // reduceLockedToken(_from, amount);
         token_accounts[_from] -= amount;
         token_accounts[_to] += amount;
     }

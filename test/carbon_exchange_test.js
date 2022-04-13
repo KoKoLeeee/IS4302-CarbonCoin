@@ -1,14 +1,12 @@
 const _deploy_contracts = require("../migrations/2_deploy_contracts");
 const truffleAssert = require('truffle-assertions');
 var assert = require('assert');
-const { Console } = require("console");
-const { env } = require("process");
 
 const Regulator = artifacts.require("Regulator");
 const UserDataStorage = artifacts.require("UserDataStorage");
 const Company = artifacts.require("Company");
 const ProjectStorage = artifacts.require("ProjectStorage");
-const Project = artifacts.require("Project");// const ERC20 = artifacts.require("ERC20");
+const Project = artifacts.require("Project");
 const CarbonToken = artifacts.require("CarbonToken");
 const Wallet = artifacts.require("Wallet");
 const TransactionData = artifacts.require("TransactionData");
@@ -89,9 +87,17 @@ contract("Carbon Contract", function (accounts) {
          
     })
 
+    it("Company B1 places a Bid Offer for 100 coins at 0.01Eth without Depositing Eth", async () => {
+        console.log("Testing Carbon Exchange Contract");
+        await truffleAssert.fails(
+            carbonExchangeInstance.placeBidOrder(100, 10000000000000000n, {from:accounts[4]}),
+            truffleAssert.ErrorType.REVERT,
+            "Insufficient funds! Please top up!"
+        );
+        
+    });
 
     it("Company B1 places a Bid Offer for 100 coins at 0.01Eth", async () => {
-        console.log("Testing Carbon Exchange Contract");
         let bid1 = await carbonExchangeInstance.placeBidOrder(100, 10000000000000000n, {from:accounts[4], value: 1E18});
         truffleAssert.eventEmitted(bid1, 'DepositEth', (ev) => {
             return ev._address == accounts[4] && ev.amount == 1000000000000000000n;
@@ -112,7 +118,7 @@ contract("Carbon Contract", function (accounts) {
         
     });
 
-    it("Company A cannot place an Ask offer without Depositing Coins", async () => {
+    it("Company S1 cannot place an Ask offer without Depositing Coins", async () => {
         await truffleAssert.fails(
             carbonExchangeInstance.placeAskOrder(50, 10000000000000000n, {from: accounts[2]}),
             truffleAssert.ErrorType.REVERT,
@@ -129,7 +135,7 @@ contract("Carbon Contract", function (accounts) {
 
     it("Company S1 places an Ask Offer for 50 coins at 0.01Eth", async () => {
         let ask1 = await carbonExchangeInstance.placeAskOrder(50, 10000000000000000n, {from: accounts[2]});
-        // truffleAssert.eventEmitted(ask1, 'DepositToken');
+        
         truffleAssert.eventEmitted(ask1, 'WalletLockToken', (ev) => {
             return ev._address == accounts[2] && ev.amount == 50;
         })
@@ -148,6 +154,14 @@ contract("Carbon Contract", function (accounts) {
 
         truffleAssert.eventEmitted(ask1, 'WalletTransferToken', (ev) => {
             return ev._from == accounts[2] && ev._to == accounts[4] && ev.amount == 50;
+        })
+
+        truffleAssert.eventEmitted(ask1, 'FilledAskOrder', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(ask1, 'FilledBidOrder', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 50 && ev.price == 10000000000000000n;
         })
 
     });
@@ -195,6 +209,15 @@ contract("Carbon Contract", function (accounts) {
             return ev._from == accounts[3] && ev._to == accounts[4] && ev.amount == 50;
         })
 
+        truffleAssert.eventEmitted(ask3, 'FilledAskOrder', (ev) => {
+            return ev._address == accounts[3] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(ask3, 'FilledBidOrder', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+
         truffleAssert.eventEmitted(ask3, 'PlacedAskOrder', (ev) => {
             return ev._address == accounts[3] && ev.amount == 50 && ev.price == 10000000000000000n;
         })
@@ -227,34 +250,142 @@ contract("Carbon Contract", function (accounts) {
             return ev._from == accounts[3] && ev._to == accounts[5] && ev.amount == 50;
         })
 
+        truffleAssert.eventEmitted(bid2, 'FilledAskOrder', (ev) => {
+            return ev._address == accounts[3] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(bid2, 'FilledBidOrder', (ev) => {
+            return ev._address == accounts[5] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
     })
     
-    it("Company B2 places a Bid Offer for 50 coins at 0.02Eth", async () => {
-        let bid2 = await carbonExchangeInstance.placeBidOrder(50, 20000000000000000n, {from: accounts[5], value: 2E18})
+    it("Company B2 places a Bid Offer for 50 coins at 0.02Eth AGAIN", async () => {
+        let bid3 = await carbonExchangeInstance.placeBidOrder(50, 20000000000000000n, {from: accounts[5]})
         
-        truffleAssert.eventEmitted(bid2, 'DepositEth', (ev) => {
-            return ev._address == accounts[5] && ev.amount == 2000000000000000000n;
-        });
-
-        truffleAssert.eventEmitted(bid2, 'WalletLockEth', (ev) => {
+        truffleAssert.eventNotEmitted(bid3, 'DepositEth');
+        
+        truffleAssert.eventEmitted(bid3, 'WalletLockEth', (ev) => {
             return ev._address == accounts[5] && ev.amount == 50n * 20000000000000000n;
         })
 
-        truffleAssert.eventEmitted(bid2, 'WalletUnlockEth', (ev) => {
+        truffleAssert.eventEmitted(bid3, 'WalletUnlockEth', (ev) => {
             return ev._address == accounts[5] && ev.amount == 50n * 20000000000000000n;
         })
 
-        truffleAssert.eventEmitted(bid2, 'WalletTransferEth', (ev) => {
+        truffleAssert.eventEmitted(bid3, 'WalletTransferEth', (ev) => {
             return ev._from == accounts[5] && ev._to == accounts[2] && ev.amount == 50n * 20000000000000000n;
         })
 
-        truffleAssert.eventEmitted(bid2, 'WalletUnlockToken', (ev) => {
+        truffleAssert.eventEmitted(bid3, 'WalletUnlockToken', (ev) => {
             return ev._address == accounts[2] && ev.amount == 50; 
         })
 
-        truffleAssert.eventEmitted(bid2, 'WalletTransferToken', (ev) => {
+        truffleAssert.eventEmitted(bid3, 'WalletTransferToken', (ev) => {
             return ev._from == accounts[2] && ev._to == accounts[5] && ev.amount == 50;
         })
 
+        truffleAssert.eventEmitted(bid3, 'FilledAskOrder', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 50 && ev.price == 20000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(bid3, 'FilledBidOrder', (ev) => {
+            return ev._address == accounts[5] && ev.amount == 50 && ev.price == 20000000000000000n;
+        })
+
     })
+
+    it("Company B1 places an Ask Order of 100 coins at 0.01Eth, fails to Withdraw his tokens", async () => {
+        let ask4 = await carbonExchangeInstance.placeAskOrder(100, 10000000000000000n, {from: accounts[4]});
+
+        truffleAssert.eventEmitted(ask4, 'WalletLockToken', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 100;
+        })
+        truffleAssert.eventEmitted(ask4, 'PlacedAskOrder', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 100 && ev.price == 10000000000000000n;
+        })
+
+        await truffleAssert.fails(
+            carbonExchangeInstance.withdrawToken({from: accounts[4]}),
+            truffleAssert.ErrorType.REVERT
+        )
+
+    })
+
+    it("Company B1 cancels his Ask Order", async () => {
+        let cancel_ask1 = await carbonExchangeInstance.removeAskOrder(10000000000000000n, {from: accounts[4]});
+
+        truffleAssert.eventEmitted(cancel_ask1, 'WalletUnlockToken', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 100;
+        })
+
+        truffleAssert.eventEmitted(cancel_ask1, 'RemovedAskOrder', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 100 && ev.price == 10000000000000000n
+        })
+    })
+
+    it("Company B1 successfully withdraws his tokens", async () => {
+        let withdraw_token1 = await carbonExchangeInstance.withdrawToken({from: accounts[4]});
+
+        truffleAssert.eventEmitted(withdraw_token1, 'WithdrawToken', (ev) => {
+            return ev._address == accounts[4] && ev.amount == 100;
+        })
+    })
+
+    it("Company S1 places a Bid Order for 50 coins at 0.01Eth, only can withdraw 1Eth", async () => {
+        let bid4 = await carbonExchangeInstance.placeBidOrder(50, 10000000000000000n, {from: accounts[2]});
+
+        truffleAssert.eventEmitted(bid4, 'WalletLockEth', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 500000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(bid4, 'PlacedBidOrder', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+        let withdraw_eth1 = await carbonExchangeInstance.withdrawEth({from: accounts[2]});
+
+        truffleAssert.eventEmitted(withdraw_eth1, 'WithdrawEth', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 1000000000000000000n
+        })
+
+    })
+
+    it("Company S1 cancels Bid Order and manage to withdraw remaining 0.5Eth", async() => {
+        let cancel_bid1 = await carbonExchangeInstance.removeBidOrder(10000000000000000n, {from: accounts[2]});
+
+        truffleAssert.eventEmitted(cancel_bid1, 'WalletUnlockEth', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 50n * 10000000000000000n;
+        })
+
+        truffleAssert.eventEmitted(cancel_bid1, 'RemovedBidOrder', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 50 && ev.price == 10000000000000000n;
+        })
+
+        let withdraw_eth2 = await carbonExchangeInstance.withdrawEth({from: accounts[2]});
+
+        truffleAssert.eventEmitted(withdraw_eth2, 'WithdrawEth', (ev) => {
+            return ev._address == accounts[2] && ev.amount == 500000000000000000n;
+        })
+    })
+
+    it("Company B1 tries to withdraw Eth from account", async () => {
+        await truffleAssert.fails(
+            carbonExchangeInstance.withdrawEth({from: accounts[4]}),
+            truffleAssert.ErrorType.REVERT,
+            'No withdrawable Eth!'
+        )
+    })
+
+    it("Company S1 tries to withdraw Tokens from account", async () => {
+        await truffleAssert.fails(
+            carbonExchangeInstance.withdrawToken({from: accounts[2]}),
+            truffleAssert.ErrorType.REVERT,
+            'No withdrawable Tokens!'
+        );
+    })
+
+
+
+
 });
