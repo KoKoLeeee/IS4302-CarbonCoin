@@ -34,7 +34,7 @@ contract UserDataStorage {
 
     // modifiers
     modifier ownerOnly() {
-        require(msg.sender == owner);
+        require(msg.sender == owner, 'Only the owner can set the regulator/contract address');
         _;
     }
     
@@ -48,24 +48,6 @@ contract UserDataStorage {
         _;
     }
 
-<<<<<<< HEAD
-    modifier ownerOnly() {
-        require(msg.sender == owner, "Only the owner can do this");
-        _;
-    }
-
-    //set address of regulator and and company contract
-
-    function setCompanyContract(address _address) ownerOnly() public {
-        companyContract = _address;
-    }
-
-    function setRegulatorContract(address _address) ownerOnly() public {
-        regulatorContract = _address;
-    }
-
-    // Regulator Functions
-=======
     // setters
 
     function setCompanyContract(address _address) public ownerOnly {
@@ -79,7 +61,6 @@ contract UserDataStorage {
     }
 
     // ------ Regulator Functions ------
->>>>>>> origin/CarbonToken
 
     // add regulator to list of authorised regulators
     function addRegulator(string memory name, string memory country, address _address) public approvedRegulatorContractOnly {

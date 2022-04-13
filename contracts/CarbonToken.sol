@@ -22,6 +22,10 @@ contract CarbonToken {
         projectContract = projectContractAddress;
     }
 
+    event mintedForProject(address, uint256, uint256);
+    event mintedForYear(address, uint256);
+    event TokensDestroyed(address, uint256);
+
     modifier ownerOnly() {
         require(_owner == msg.sender, 'Not owner of contract!');
         _;
@@ -50,20 +54,27 @@ contract CarbonToken {
     function mintForYear(address _address, uint256 year) public regulatorOnly {
         uint256 amount = companyContract.getYearLimit(_address, year);
         erc20.mint(_address, amount);
+        emit mintedForYear(_address, year);
     }
 
     function mintForProject(uint256 projectId) public regulatorOnly {
         address awardee = projectContract.getCompany(projectId);
         uint256 amount = projectContract.getProjectRewards(projectId);
         erc20.mint(awardee, amount);
+        emit mintedForProject(awardee, amount, projectId);
     }
 
     function destroyTokens(address _from, uint256 amount) public regulatorOnly {
         erc20.transferFrom(_from, address(0), amount);
+        emit TokensDestroyed(_from, amount);
     }
 
     function transfer(address _from, address _to, uint256 amount) public exchangeAddressOnly {
         erc20.transferFrom(_from, _to, amount);
+    }
+
+    function getTokenBalance(address _address) public view returns (uint256) {
+        return erc20.balanceOf(_address);
     }
 
 }

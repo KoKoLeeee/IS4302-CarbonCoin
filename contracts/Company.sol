@@ -7,6 +7,9 @@ contract Company {
     UserDataStorage dataStorage;
 
     event ApprovedCompany(address);
+    event RemovedCompany(address);
+    event YearlyLimitUpdated(address, uint256, uint256);
+    event EmissionsReported(uint256 year, uint256 emissions);
 
     constructor(UserDataStorage dataStorageAddress) public {
         owner = msg.sender;
@@ -35,30 +38,27 @@ contract Company {
     }
 
     // For Regulators to authorised companies
-<<<<<<< HEAD
-    function addCompany(string memory name, address _address) public authorisedRegulatorOnly {
-        // Update UserDataStorage
-        dataStorage.addCompany(name, _address, msg.sender);
-=======
     function approveCompany(string memory name, address toApprove) public approvedRegulatorOnly {
         // Update UserDataStorage
         dataStorage.addCompany(name, toApprove, msg.sender);
         emit ApprovedCompany(toApprove);
->>>>>>> origin/CarbonToken
     }
 
     // For regulators to forcefully remove companies
     function removeCompany(address toRemove) public approvedRegulatorOnly {
         dataStorage.removeCompany(toRemove);
+        emit RemovedCompany(toRemove);
     }
 
     // For Regulators to report emissions of companies
     function reportEmissions(address company, uint256 year, uint256 emissions) public approvedRegulatorOnly {
         dataStorage.updateCompanyEmissions(company, year, emissions);
+        emit EmissionsReported(year, emissions);
     }
 
     function updateYearlyLimit(address company, uint256 year, uint256 limit) public approvedRegulatorOnly {
         dataStorage.updateCompanyLimits(company, year, limit);
+        emit YearlyLimitUpdated(company, year, limit);
     }
     // ------ getter functions ------
 
