@@ -11,6 +11,7 @@ contract ProjectStorage {
     }
 
     struct ProjectInfo {
+        uint256 projId;
         string name;
         address by;
         ProjectStatus status;
@@ -43,14 +44,15 @@ contract ProjectStorage {
 
     // ------ Class Functions ------
     function setProjectAddress(address _address) public ownerOnly() {
-        owner = _address;
+        projectAddress = _address;
         emit ProjectAddressSet(_address);
     }
 
     // adds project details into storage
-    function addProject(string memory projectName) public approvedProjectContract {
-        projectInfo[numProjects] = ProjectInfo({ name: projectName, by: tx.origin, status: ProjectStatus.Requested, tokensAwarded: 0 });
+    function addProject(string memory projectName) public approvedProjectContract returns (uint256) {
+        projectInfo[numProjects] = ProjectInfo({projId: numProjects, name: projectName, by: tx.origin, status: ProjectStatus.Requested, tokensAwarded: 0 });
         numProjects += 1;
+        return numProjects - 1;
     }
 
     // update project details
@@ -67,5 +69,9 @@ contract ProjectStorage {
 
     function getProjectRewards(uint256 projectId) public view returns (uint256) {
         return projectInfo[projectId].tokensAwarded;
+    }
+
+    function getProjectStatus(uint256 projectId) public view returns (ProjectStatus) {
+        return projectInfo[projectId].status;
     }
 }

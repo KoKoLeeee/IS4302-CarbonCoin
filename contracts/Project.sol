@@ -12,6 +12,17 @@ contract Project {
     ProjectStorage projectStorage;
     // CarbonToken carbonContract;
 
+    enum ProjectStatus {
+        Requested,
+        Approved,
+        Rejected
+    }
+
+
+    event projectRequested(address requester, string projectName, uint256 projId);
+    event projectRejected(address rejector, uint256 projId);
+    event projectApproved(address approver, uint256 projId, uint256 awardedTokens);
+
     constructor(Regulator regulatorContractAddress, Company companyContractAddress, ProjectStorage projectStorageAddress) public {
         regulatorContract = regulatorContractAddress;
         companyContract = companyContractAddress;
@@ -28,17 +39,21 @@ contract Project {
         _;
     }
 
-    function requestProject(string memory projectName) public companyOnly {
-        projectStorage.addProject(projectName);
+    function requestProject(string memory projectName) public companyOnly returns (uint256) {
+        uint256 projId = projectStorage.addProject(projectName);
+        emit projectRequested(msg.sender, projectName, projId);
+        return projId;
     }
 
     function approveProject(uint256 projectId, uint256 awardedTokens) public regulatorOnly {
         projectStorage.updateProject(projectId, ProjectStorage.ProjectStatus.Approved, awardedTokens);
         // carbonContract.mintFor(projectStorage.getCompany(projectId), awardedTokens);
+        emit projectApproved(msg.sender, projectId, awardedTokens);
     }
 
     function rejectProject(uint256 projectId) public regulatorOnly() {
         projectStorage.updateProject(projectId, ProjectStorage.ProjectStatus.Rejected, 0);
+        emit projectRejected(msg.sender, projectId);
     }
 
     // ------- getters function ------
@@ -48,6 +63,10 @@ contract Project {
 
     function getProjectRewards(uint256 projectId) public view returns (uint256) {
         return projectStorage.getProjectRewards(projectId);
+    }
+
+    function getProjectStatus(uint256 projectId) public view returns (ProjectStorage.ProjectStatus) {
+        return projectStorage.getProjectStatus(projectId);
     }
     
 }

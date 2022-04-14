@@ -7,6 +7,7 @@ contract Regulator {
     UserDataStorage dataStorage;
 
     event ApprovedRegulator(address);
+    event RemovedRegulator(address);
 
     constructor(UserDataStorage dataStorageAddress) public {
         owner = msg.sender;
@@ -37,6 +38,7 @@ contract Regulator {
     // For contract owner to forcefully remove Regulators
     function removeRegulator(address toRemove) public ownerOnly {
         dataStorage.removeRegulator(toRemove);
+        emit RemovedRegulator(toRemove);
     }
 
     // getter functions
