@@ -68,31 +68,15 @@ it("Regulator (accounts[1]) updates 2022 yearly limit for companies[2,3] to be 7
 })
 
 
-it("Regulator (accounts[1]) issues 75 tokens to Apple Inc. (accounts[2]) and 40 tokens to Shell (accounts[3]) based on their 2022 limit", async() => {
+it("Regulator (accounts[1]) issues 75 tokens to Exxon Mobil (accounts[2]) and 40 tokens to Shell (accounts[3]) based on their 2022 limit", async() => {
     let i1 = await carbonTokenInstance.mintForYear(accounts[2], 2022, {from: accounts[1]});
     truffleAssert.eventEmitted(i1, "mintedForYear");
     let i2 = await carbonTokenInstance.mintForYear(accounts[3], 2022, {from: accounts[1]});
     truffleAssert.eventEmitted(i2, "mintedForYear");
 })
 
-it('Only Regulator (accounts[1]) can update the emissions for a Company (accounts[2,3]). Using other accounts (accounts[3]) fails', async() => {
-    console.log("Testing the reporting of emissions");
-    await truffleAssert.fails(
-        companyInstance.reportEmissions(accounts[2], 2022, 25, {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Only approved regulators are allowed to do this.'
-    );
-})
-
-it('Regulator (accounts[1]) can only update emissions for an approved Company (accounts[2,3]). Updating for other addresses (accounts[4]) fails.', async() => {
-    await truffleAssert.fails(
-        companyInstance.reportEmissions(accounts[4], 2022, 25, {from: accounts[1]}),
-        truffleAssert.ErrorType.REVERT,
-        'Address is not an approved company!'
-    );
-})
-
-it("Regulator (accounts[1]) reports emissions for Apple Inc. (accounts[2]) to be 50 tons for 2022", async() => {
+it("Regulator (accounts[1]) reports emissions for Exxon Mobil (accounts[2]) to be 50 tons for 2022", async() => {
+    console.log("Reporting of emissions");
     let r1 = await companyInstance.reportEmissions(accounts[2], 2022, 50, {from: accounts[1]});
     truffleAssert.eventEmitted(r1, 'EmissionsReported', (ev) => {
         return ev.year == 2022 && ev.emissions == 50
@@ -103,29 +87,20 @@ it("Regulator (accounts[1]) reports emissions for Shell (accounts[3]) to be 50 t
     let r1 = await companyInstance.reportEmissions(accounts[3], 2022, 50, {from: accounts[1]});
 })
 
-it("Only a Regulator (accounts[1]) can burn tokens. Using other accounts (accounts[3]) fails", async() => {
-    console.log("Testing burning of tokens when spent");
-    await truffleAssert.fails(
-        carbonTokenInstance.destroyTokens(accounts[2], 0, {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Not authorised as a Regulator!'
-    );
-
-})
-
-it("Regulator (accounts[1]) burns 50 tokens belonging to Apple Inc. (accounts[2])", async() => {
+it("Regulator (accounts[1]) burns 50 tokens belonging to Exxon Mobil (accounts[2])", async() => {
+    console.log("Burning of tokens when spent");
     let b1 = await carbonTokenInstance.destroyTokens(accounts[2], 50, {from: accounts[1]});
     truffleAssert.eventEmitted(b1, "TokensDestroyed");
 })
 
-//mention that this computation of how many tokens to burn is done in the frontend.
+//computation of how many tokens to burn is done in the frontend.
 //Shell emitted 50 tons but only has 40 tokens. So we burn 40 tokens and fine them for the other 10 tons.
 it("Since Shell emitted more than the tokens they have, Regulator (accounts[1]) burns all (40) tokens belonging to Shell (accounts[3]). Shell will be fined for the excess 10 tons. ", async() => {
     let b1 = await carbonTokenInstance.destroyTokens(accounts[3], 40, {from:accounts[1]});
     truffleAssert.eventEmitted(b1, "TokensDestroyed");
 })
 
-it("Apple Inc. (accounts[2]) token balance should fall by the amount that was burnt, left 75-50=25 tokens", async() => {
+it("Exxon Mobil (accounts[2]) token balance should fall by the amount that was burnt, left 75-50=25 tokens", async() => {
     let a1 = await carbonTokenInstance.getTokenBalance(accounts[2]);
     assert.strictEqual(
         a1.toString(), 

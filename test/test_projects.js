@@ -51,7 +51,6 @@ it("Adding a regulator (accounts[1])", async() => {
 
 it('Adding a company (accounts[2])', async() => {
     await companyInstance.approveCompany('Apple Inc', accounts[2], {from: accounts[1]})
-    
     //check that account 2 is authorised 
     let auth = await companyInstance.isApproved(accounts[2])
     assert.strictEqual(
@@ -61,17 +60,8 @@ it('Adding a company (accounts[2])', async() => {
     )
 })
 
-it('Only a Company (accounts[2]) can request a project to be approved. Using other accounts (accounts[3]) fails', async() => {
-    console.log("Testing the requesting of projects");
-    await truffleAssert.fails(
-        projectInstance.requestProject('eco-friendly machines', {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Not authorised Company!'
-    );
-})
-
 it('Company (accounts[2]) requests a project - "eco-friendly machines" to be approved, project id should be 0 since it is the first project in the system', async() => {
-
+    console.log("Requesting of projects");
     let r1 = await projectInstance.requestProject("eco-friendly machines", {from: accounts[2]});
     truffleAssert.eventEmitted(r1, "projectRequested", (ev) => {
         return ev.requester == accounts[2] && ev.projectName == 'eco-friendly machines' && ev.projId == 0
@@ -79,7 +69,6 @@ it('Company (accounts[2]) requests a project - "eco-friendly machines" to be app
 })
 
 it('Company (accounts[2]) requests another project - "carbon-efficient reactor" to be approved, project id should be 1 since it is the second project in the system', async() => {
-
     let r2 = await projectInstance.requestProject("carbon-efficient reactor", {from: accounts[2]});
     truffleAssert.eventEmitted(r2, "projectRequested", (ev) => {
         return ev.requester == accounts[2] && ev.projectName == 'carbon-efficient reactor' && ev.projId == 1
@@ -88,7 +77,6 @@ it('Company (accounts[2]) requests another project - "carbon-efficient reactor" 
 })
 
 it("Project status for both eco-friendly machines and carbon-efficient reactor should be 'requested'", async() => {
-
     let status1 = await projectInstance.getProjectStatus(0); //proj id of eco-friendly machines is 0; checked above
     let status2 = await projectInstance.getProjectStatus(1); //proj id of carbon-efficient reactor is 1; checked above
 
@@ -108,24 +96,15 @@ it("Project status for both eco-friendly machines and carbon-efficient reactor s
     //Postcondition: There are 2 projects with 'Requested' status pending for the regulator to approve now.
 })
 
-it("Only a Regulator (accounts[1]) can reject a project. Using other accounts (accounts[3]) fails.", async() => {
-    console.log("Testing rejection of projects");
-    await truffleAssert.fails(
-        projectInstance.rejectProject('1', {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Not authorised Regulator!'
-    );
-})
 
 it("Regulator (accounts[1]) rejects the carbon-efficient reactor project", async() => {
-
+    console.log("Rejection of projects");
     //reject carbon-efficient reactor for real with correct regulator account
     let r1 = await projectInstance.rejectProject('1', {from: accounts[1]});
     truffleAssert.eventEmitted(r1, 'projectRejected');
 })
 
 it("Status of the carbon-efficient reactor project (id 1) should be 'Rejected' (enum index 2)", async() => {
-    
     let status2 = await projectInstance.getProjectStatus('1');
     assert.strictEqual(
         status2.toString(),
@@ -134,17 +113,9 @@ it("Status of the carbon-efficient reactor project (id 1) should be 'Rejected' (
     );
 })
 
-it("Only a Regulator (accounts[1]) can approve a project. Using other accounts (accounts[3]) fails", async() => {
-    console.log("Testing approvals of projects");
-    await truffleAssert.fails(
-        projectInstance.approveProject('0', 5, {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Not authorised Regulator!'
-    );
-})
 
-it("Regulator (accounts[1]) approves the eco-friendly machines project", async()=> {
-    
+it("Regulator (accounts[1]) approves the eco-friendly machines project", async()=> { 
+    console.log("Approval of projects");
     //approve eco-friendly machines project (id 0) with 5 carbon tokens to be awarded
     let a1 = await projectInstance.approveProject('0', 5, {from: accounts[1]});
     truffleAssert.eventEmitted(a1, 'projectApproved', (ev) => {
@@ -153,7 +124,6 @@ it("Regulator (accounts[1]) approves the eco-friendly machines project", async()
 })
 
 it("Status of the eco-friendly machines project (id 0) should be 'Approved' (enum index 1)", async() => {
-
     let status1 = await projectInstance.getProjectStatus('0');
     assert.strictEqual(
         status1.toString(),
@@ -162,23 +132,14 @@ it("Status of the eco-friendly machines project (id 0) should be 'Approved' (enu
         );
 })
 
-it("Only the Regulator (accounts[1]) is able to award tokens. Using other accounts (accounts[3]) fails", async() =>{
-    console.log("Testing awarding of tokens to Company after approval of project");
-    await truffleAssert.fails(
-        carbonTokenInstance.mintForProject('0', {from: accounts[3]}),
-        truffleAssert.ErrorType.REVERT,
-        'Not authorised as a Regulator!'
-    );
-})
 
 it("Regulator (accounts[1]) mints 5 tokens for the Company (accounts[2])", async() => {
-
+    console.log("Awarding of tokens to Company after approval of project");
     let m1 = await carbonTokenInstance.mintForProject('0', {from: accounts[1]});
     truffleAssert.eventEmitted(m1, 'mintedForProject');
 })
 
 it("Company (accounts[2]) token balance should reflect 5 tokens (initially is 0)", async() => {
-
     let b1 = await carbonTokenInstance.getTokenBalance(accounts[2]);
     assert.strictEqual(
         b1.toString(),
