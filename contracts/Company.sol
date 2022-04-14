@@ -3,9 +3,12 @@ pragma solidity ^0.5.0;
 import "./UserDataStorage.sol";
 
 contract Company {
+    // owner of the contract (governing body)
     address owner;
+    // UserDataStorage instance that is holding the data of the CompanyInformation
     UserDataStorage dataStorage;
 
+    // events
     event ApprovedCompany(address);
     event RemovedCompany(address);
     event YearlyLimitUpdated(address, uint256, uint256);
@@ -24,18 +27,20 @@ contract Company {
         _;
     }
 
-    // restrict access to only authorised regulators.
+    // restrict access to only approved regulators.
     modifier approvedRegulatorOnly() {
         require(dataStorage.isApprovedRegulator(msg.sender), 'Only approved regulators are allowed to do this.');
         _;
     }
 
-    // ------ Class Functions ------
+    // ----- Setter -----
 
     // setter for UserDataStorage
     function setUserDataStorageAddress(address _address) public ownerOnly {
         dataStorage = UserDataStorage(_address);
     }
+
+    // ----- Class Functions -----
 
     // For Regulators to authorised companies
     function approveCompany(string memory name, address toApprove) public approvedRegulatorOnly {
@@ -56,11 +61,12 @@ contract Company {
         emit EmissionsReported(year, emissions);
     }
 
+    // For regulators to update yearly emission limit for companies
     function updateYearlyLimit(address company, uint256 year, uint256 limit) public approvedRegulatorOnly {
         dataStorage.updateCompanyLimits(company, year, limit);
         emit YearlyLimitUpdated(company, year, limit);
     }
-    // ------ getter functions ------
+    // ----- Getters -----
 
     // check if an adress is an authorised company
     function isApproved(address _address) public view returns(bool) {
@@ -72,6 +78,7 @@ contract Company {
         return dataStorage.getEmissions(_address, year);
     }
 
+    // get yearly emission limit of company
     function getYearLimit(address _address, uint256 year) public view returns (uint256) {
         return dataStorage.getLimit(_address, year);
     }

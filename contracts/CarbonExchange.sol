@@ -6,35 +6,51 @@ import './TransactionData.sol';
 import './Wallet.sol';
 
 contract CarbonExchange {
-    address owner = msg.sender;
-    Wallet wallet;
+    // owner of the contract (governing body)
+    address owner;
 
+    // structure for an individual order
+    // account_address is the address of the user who placed the order
+    // amount is the amount of tokens in the order (negative means it is an Ask Order (sell), positive means it is a BidOrder (buy))
     struct OrderInfo {
         address account_address;
         int256 amount;
     }
 
+    // Structure for a list of order, at a specific price
+    // orders is an array of OrderInfo, which stores the queue of orders.
+    // front indicates the front of the queue in the array
+    // end indicates the end of the queue in the array
     struct OrderList {
         OrderInfo[] orders;
         uint256 front;
         uint256 end;
     }
 
+    // Spread is the Spread of Orders at multiple prices
+    // prices maps the specific price to the list of orders at that price
+    // closest points to the highest bid price or the lowest ask price in the spread (depends if its a BidSpread or AskSpread)
+    // nextClosest points from the highest bid price to the next highest bid price, OR from the lowest Ask price to the next lowest Ask price
     struct Spread {
         mapping(uint256 => OrderList) prices;
         mapping(uint256 => uint256) nextClosest;
         uint256 closest;
     }
 
+    // bid and ask spread maintaine separately
     Spread bid;
     Spread ask;
     
-    // map from address to price to amount
+    // addressOrder keeps track of an individual's orders
+    // maps from address of user to price level to amount of tokens being sold at that price (negative amount indicates an Ask Order, positive amount indicates a Bid Order, 0 indicates no order)
     mapping(address => mapping(uint256 => int256)) addressOrders;
+
+    // Wallet and Transaction instances which holds wallet and transaction data.
+    Wallet wallet;
+    TransactionData transactions;
 
     CarbonToken tokenContract;
     Company companyContract;
-    TransactionData transactions;
 
     // events
     event PlacedBidOrder(address _address, uint256 amount, uint256 price);
@@ -57,6 +73,7 @@ contract CarbonExchange {
     event WalletTransferToken(address _from, address _to, uint256 amount);
     
     constructor(Wallet walletAddress, TransactionData transactionsAddress, CarbonToken tokenAddress, Company companyAddress) public {
+        owner = msg.sender;
         wallet = walletAddress;
         transactions = transactionsAddress;
         tokenContract = tokenAddress;
@@ -65,22 +82,21 @@ contract CarbonExchange {
 
     // ------ modifiers ------
 
-    // access restriction
+    // restricts access to approved companies 
     modifier companyOnly() {
         require(companyContract.isApproved(msg.sender), 'Not authorised company!');
         _;
     }
 
+    // restricts access to owner of contract
     modifier ownerOnly() {
         require(msg.sender == owner, 'Not owner of contract!');
         _;
     }
 
-    function setWallet(Wallet walletAddress) public ownerOnly {
-        wallet = walletAddress;
-    }
-    
-    // storing transaction data
+    // ----- Class Functions ------
+
+    // logs transactions into TransactionData
     function logTransaction(address _address, int256 amount, uint256 price) private {
 
         // amount > 0 implies its a buy transaction.
@@ -88,6 +104,7 @@ contract CarbonExchange {
         transactions.addTransaction(_address, amount, price);
     }
 
+    // Deposits tokens into wallet of sender's address
     function depositToken(uint256 amount) public companyOnly {
         
         tokenContract.transfer(msg.sender, address(this), amount);
@@ -95,7 +112,8 @@ contract CarbonExchange {
         emit DepositToken(msg.sender, amount);
     }
 
-    function placeBidOrder(uint256 amount, uint256 price) public payable {
+    // Places a bid order on the exchange market
+    function placeBidOrder(uint256 amount, uint256 price) public payable companyOnly {
         
         // update balance of eth in wallet
         if (msg.value > 0) {
@@ -114,8 +132,6 @@ contract CarbonExchange {
         // if bid price is higher than the lowest ask price, can fill order.
         uint256 biddingPrice = price;
         uint256 lowestAskPrice = ask.closest;
-
-        
 
         // if there is a asking price lower than the bidding price and order is not fully filled yet
         while (lowestAskPrice != 0 && biddingPrice >= lowestAskPrice && amount > 0) {
@@ -202,6 +218,7 @@ contract CarbonExchange {
                 front += 1;
             }
 
+            // if there are no more bid orders at the price
             if (front == end) {
                 bid.prices[lowestAskPrice].front = 0;
                 bid.prices[lowestAskPrice].end = 0;
@@ -248,7 +265,8 @@ contract CarbonExchange {
         }
     }
 
-    function removeBidOrder(uint256 price) public {
+    // removes bid order placed by sender
+    function removeBidOrder(uint256 price) public companyOnly {
         require(addressOrders[msg.sender][price] > 0, 'No current Bid orders!');
         uint256 amount = uint256(addressOrders[msg.sender][price]);
         addressOrders[msg.sender][price] = 0;
@@ -259,7 +277,8 @@ contract CarbonExchange {
         emit RemovedBidOrder(msg.sender, amount, price);
     }
 
-    function placeAskOrder(uint256 amount, uint256 price) public {
+    // places an ask order on the market
+    function placeAskOrder(uint256 amount, uint256 price) public companyOnly {
         // ensure there is no other bidOrders at this price for seller.
         require(addressOrders[msg.sender][price] <= 0, 'Currently have bid order at this price!');
         // ensure there is sufficient tokens in wallet to make the purchase
@@ -411,6 +430,7 @@ contract CarbonExchange {
 
     }
 
+    // removes ask order placed by sender
     function removeAskOrder(uint256 price) public companyOnly {
         require(addressOrders[msg.sender][price] < 0, 'No current Ask orders!');
         uint256 amount = uint256(-addressOrders[msg.sender][price]);
@@ -422,6 +442,7 @@ contract CarbonExchange {
         emit RemovedAskOrder(msg.sender, amount, price);
     }
 
+    // withdraws tokens in wallet
     function withdrawToken() public companyOnly {
         require(wallet.getWithdrawableToken(msg.sender) > 0, 'No withdrawable Tokens!');
 
@@ -434,6 +455,7 @@ contract CarbonExchange {
 
     }
 
+    // withdraws eth in wallet
     function withdrawEth() public payable companyOnly {
         require(wallet.getWithdrawableEth(msg.sender) > 0, 'No withdrawable Eth!');
 

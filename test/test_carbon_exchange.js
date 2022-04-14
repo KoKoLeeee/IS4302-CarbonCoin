@@ -102,6 +102,7 @@ contract("Carbon Contract", function (accounts) {
 
     it("B1 places a Bid Order for 100 tokens at 0.01Eth", async () => {
         let bid1 = await carbonExchangeInstance.placeBidOrder(100, 10000000000000000n, {from:accounts[4], value: 1E18});
+
         truffleAssert.eventEmitted(bid1, 'DepositEth', (ev) => {
             return ev._address == accounts[4] && ev.amount == 1000000000000000000n;
         }, 'Incorrect DepositEth parameters');
@@ -171,6 +172,7 @@ contract("Carbon Contract", function (accounts) {
 
     it("S1 places an Ask Order for 50 tokens at 0.02Eth", async () => {
         let ask2 = await carbonExchangeInstance.placeAskOrder(50, 20000000000000000n, {from: accounts[2]});
+        
         // truffleAssert.eventEmitted(ask2, 'DepositToken');
         truffleAssert.eventEmitted(ask2, 'WalletLockToken', (ev) => {
             return ev._address == accounts[2] && ev.amount == 50;
