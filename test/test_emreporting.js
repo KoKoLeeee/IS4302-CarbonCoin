@@ -87,11 +87,30 @@ it("Regulator (accounts[1]) reports emissions for Shell (accounts[3]) to be 50 t
     let r1 = await companyInstance.reportEmissions(accounts[3], 2022, 50, {from: accounts[1]});
 })
 
+it("Shell (accounts[3]) emissions should reflect 50 tons for 2022", async() => {
+    let a1 = await companyInstance.getEmission(accounts[3], 2022);
+    assert.strictEqual(
+        a1.toString(),
+        '50',
+        "Emissions not updated"
+    )
+})
+
+it("Exxon Mobil (accounts[2]) should reflect 50 tons for 2022", async() => {
+    let a1 = await companyInstance.getEmission(accounts[2], 2022);
+    assert.strictEqual(
+        a1.toString(),
+        '50',
+        "Emissions not updated"
+    )
+})
+
 it("Regulator (accounts[1]) burns 50 tokens belonging to Exxon Mobil (accounts[2])", async() => {
     console.log("Burning of tokens when spent");
     let b1 = await carbonTokenInstance.destroyTokens(accounts[2], 50, {from: accounts[1]});
     truffleAssert.eventEmitted(b1, "TokensDestroyed");
 })
+
 
 //computation of how many tokens to burn is done in the frontend.
 //Shell emitted 50 tons but only has 40 tokens. So we burn 40 tokens and fine them for the other 10 tons.
