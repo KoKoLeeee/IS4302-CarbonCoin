@@ -27,6 +27,8 @@ contract("Carbon Contract", function (accounts) {
 
     });
 
+    // Initializing Preconditions to test Carbon Exchange Market
+
     it("Setting Address of Company and Regulator in UserDataStorage", async () => {
         console.log("Initializing Preconditions")
         let s1 = await userDataStorageInstance.setCompanyContract(companyInstance.address);
@@ -61,7 +63,7 @@ contract("Carbon Contract", function (accounts) {
         truffleAssert.eventEmitted(s7, 'ApprovedRegulator');
     })
 
-    it("Approving accounts[2,3] as Sellers and accounts[4,5] as Buyers", async () => {
+    it("Approving accounts[2,3] (Company S1 and S2) as Sellers and accounts[4,5] (Company B1 and B2) as Buyers", async () => {
         let s8 = await companyInstance.approveCompany("Company S1", accounts[2], {from:accounts[1]});
         let s9 = await companyInstance.approveCompany("Company S2", accounts[3], {from:accounts[1]});
         let s10 = await companyInstance.approveCompany("Company B1", accounts[4], {from:accounts[1]});
@@ -73,7 +75,7 @@ contract("Carbon Contract", function (accounts) {
         truffleAssert.eventEmitted(s11, 'ApprovedCompany');
     })
 
-    it("Adminstratively mint 100 tokens for both accounts[2,3]", async () => {
+    it("Adminstratively mint 100 tokens for both accounts[2,3] (Company S1 and S2)", async () => {
         let s12 = await carbonTokenInstance.mint(accounts[2], 100, {from: accounts[0]});
         let s13 = await carbonTokenInstance.mint(accounts[3], 100, {from: accounts[0]});
         truffleAssert.eventEmitted(s12, 'OwnerMint', (ev) => {
@@ -86,7 +88,9 @@ contract("Carbon Contract", function (accounts) {
          
     })
 
-    it("Company B1 places a Bid Order for 100 coins at 0.01Eth without Depositing Eth", async () => {
+    // Begin Testing for Carbon Exchange Contract
+
+    it("B1 places a Bid Order for 100 tokens at 0.01Eth without Depositing Eth", async () => {
         console.log("Testing Carbon Exchange Contract");
         await truffleAssert.fails(
             carbonExchangeInstance.placeBidOrder(100, 10000000000000000n, {from:accounts[4]}),
@@ -96,7 +100,7 @@ contract("Carbon Contract", function (accounts) {
         
     });
 
-    it("Company B1 places a Bid Order for 100 coins at 0.01Eth", async () => {
+    it("B1 places a Bid Order for 100 tokens at 0.01Eth", async () => {
         let bid1 = await carbonExchangeInstance.placeBidOrder(100, 10000000000000000n, {from:accounts[4], value: 1E18});
         truffleAssert.eventEmitted(bid1, 'DepositEth', (ev) => {
             return ev._address == accounts[4] && ev.amount == 1000000000000000000n;
@@ -117,7 +121,7 @@ contract("Carbon Contract", function (accounts) {
         
     });
 
-    it("Company S1 cannot place an Ask order without Depositing Coins", async () => {
+    it("S1 cannot place an Ask order without Depositing tokens", async () => {
         await truffleAssert.fails(
             carbonExchangeInstance.placeAskOrder(50, 10000000000000000n, {from: accounts[2]}),
             truffleAssert.ErrorType.REVERT,
@@ -125,14 +129,14 @@ contract("Carbon Contract", function (accounts) {
         );
     });
 
-    it("Company S1 deposits 100 coins to the Exchange", async () => {
+    it("S1 deposits 100 tokens to the Exchange", async () => {
         let deposit1 = await carbonExchangeInstance.depositToken(100, {from: accounts[2]});
         truffleAssert.eventEmitted(deposit1, 'DepositToken', (ev) => {
             return ev._address == accounts[2] && ev.amount == 100;
         })
     });
 
-    it("Company S1 places an Ask Order for 50 coins at 0.01Eth", async () => {
+    it("S1 places an Ask Order for 50 tokens at 0.01Eth", async () => {
         let ask1 = await carbonExchangeInstance.placeAskOrder(50, 10000000000000000n, {from: accounts[2]});
         
         truffleAssert.eventEmitted(ask1, 'WalletLockToken', (ev) => {
@@ -165,7 +169,7 @@ contract("Carbon Contract", function (accounts) {
 
     });
 
-    it("Company S1 places an Ask Order for 50 coins at 0.02Eth", async () => {
+    it("S1 places an Ask Order for 50 tokens at 0.02Eth", async () => {
         let ask2 = await carbonExchangeInstance.placeAskOrder(50, 20000000000000000n, {from: accounts[2]});
         // truffleAssert.eventEmitted(ask2, 'DepositToken');
         truffleAssert.eventEmitted(ask2, 'WalletLockToken', (ev) => {
@@ -177,14 +181,14 @@ contract("Carbon Contract", function (accounts) {
         })
     });
 
-    it("Company S2 deposits 100 coins to the Exchange", async () => {
+    it("S2 deposits 100 tokens to the Exchange", async () => {
         let deposit2 = await carbonExchangeInstance.depositToken(100, {from: accounts[3]});
         truffleAssert.eventEmitted(deposit2, 'DepositToken', (ev) => {
             return ev._address == accounts[3] && ev.amount == 100;
         })
     });
 
-    it("Company S2 places an Ask Order for 100 coins at 0.01Eth", async () => {
+    it("S2 places an Ask Order for 100 tokens at 0.01Eth", async () => {
         let ask3 = await carbonExchangeInstance.placeAskOrder(100, 10000000000000000n, {from: accounts[3]});
 
         // truffleAssert.eventEmitted(ask3, 'DepositToken');
@@ -222,7 +226,7 @@ contract("Carbon Contract", function (accounts) {
         })
     });
 
-    it("Company B2 places a Bid Order for 50 coins at 0.02Eth", async () => {
+    it("B2 places a Bid Order for 50 tokens at 0.02Eth", async () => {
         let bid2 = await carbonExchangeInstance.placeBidOrder(50, 20000000000000000n, {from: accounts[5], value: 2E18})
         
         truffleAssert.eventEmitted(bid2, 'DepositEth', (ev) => {
@@ -259,7 +263,7 @@ contract("Carbon Contract", function (accounts) {
 
     })
     
-    it("Company B2 places a Bid Order for 50 coins at 0.02Eth AGAIN", async () => {
+    it("B2 places a Bid Order for 50 tokens at 0.02Eth AGAIN", async () => {
         let bid3 = await carbonExchangeInstance.placeBidOrder(50, 20000000000000000n, {from: accounts[5]})
         
         truffleAssert.eventNotEmitted(bid3, 'DepositEth');
@@ -294,7 +298,7 @@ contract("Carbon Contract", function (accounts) {
 
     })
 
-    it("Company B1 places an Ask Order of 100 coins at 0.01Eth, fails to Withdraw his tokens", async () => {
+    it("B1 places an Ask Order of 100 tokens at 0.01Eth, fails to Withdraw his tokens", async () => {
         let ask4 = await carbonExchangeInstance.placeAskOrder(100, 10000000000000000n, {from: accounts[4]});
 
         truffleAssert.eventEmitted(ask4, 'WalletLockToken', (ev) => {
@@ -312,7 +316,7 @@ contract("Carbon Contract", function (accounts) {
 
     })
 
-    it("Company B1 cancels his Ask Order", async () => {
+    it("B1 cancels his Ask Order", async () => {
         let cancel_ask1 = await carbonExchangeInstance.removeAskOrder(10000000000000000n, {from: accounts[4]});
 
         truffleAssert.eventEmitted(cancel_ask1, 'WalletUnlockToken', (ev) => {
@@ -324,7 +328,7 @@ contract("Carbon Contract", function (accounts) {
         })
     })
 
-    it("Company B1 successfully withdraws his tokens", async () => {
+    it("B1 successfully withdraws his tokens", async () => {
         let withdraw_token1 = await carbonExchangeInstance.withdrawToken({from: accounts[4]});
 
         truffleAssert.eventEmitted(withdraw_token1, 'WithdrawToken', (ev) => {
@@ -332,7 +336,7 @@ contract("Carbon Contract", function (accounts) {
         })
     })
 
-    it("Company S1 places a Bid Order for 50 coins at 0.01Eth, only can withdraw 1Eth", async () => {
+    it("S1 places a Bid Order for 50 tokens at 0.01Eth, only can withdraw 1Eth", async () => {
         let bid4 = await carbonExchangeInstance.placeBidOrder(50, 10000000000000000n, {from: accounts[2]});
 
         truffleAssert.eventEmitted(bid4, 'WalletLockEth', (ev) => {
@@ -351,7 +355,7 @@ contract("Carbon Contract", function (accounts) {
 
     })
 
-    it("Company S1 cancels Bid Order and manage to withdraw remaining 0.5Eth", async() => {
+    it("S1 cancels Bid Order and manage to withdraw remaining 0.5Eth", async() => {
         let cancel_bid1 = await carbonExchangeInstance.removeBidOrder(10000000000000000n, {from: accounts[2]});
 
         truffleAssert.eventEmitted(cancel_bid1, 'WalletUnlockEth', (ev) => {
@@ -369,7 +373,7 @@ contract("Carbon Contract", function (accounts) {
         })
     })
 
-    it("Company B1 tries to withdraw Eth from account", async () => {
+    it("B1 fails to withdraw Eth from account", async () => {
         await truffleAssert.fails(
             carbonExchangeInstance.withdrawEth({from: accounts[4]}),
             truffleAssert.ErrorType.REVERT,
@@ -377,15 +381,12 @@ contract("Carbon Contract", function (accounts) {
         )
     })
 
-    it("Company S1 tries to withdraw Tokens from account", async () => {
+    it("S1 fails to withdraw Tokens from account", async () => {
         await truffleAssert.fails(
             carbonExchangeInstance.withdrawToken({from: accounts[2]}),
             truffleAssert.ErrorType.REVERT,
             'No withdrawable Tokens!'
         );
     })
-
-
-
 
 });
