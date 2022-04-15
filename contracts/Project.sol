@@ -13,12 +13,6 @@ contract Project {
     // ProjectStorage instance to hold data on ProjectInformation
     ProjectStorage projectStorage;
 
-    enum ProjectStatus {
-        Requested,
-        Approved,
-        Rejected
-    }
-
     // events
     event projectRequested(address requester, string projectName, uint256 projId);
     event projectRejected(address rejector, uint256 projId);
